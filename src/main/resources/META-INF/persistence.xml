@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="mn.ineg.web_smartweb_war_1.0PU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>mn.ineg.model.MRole</class>
+    <class>mn.ineg.model.ScoreDescription</class>
+    <class>mn.ineg.model.MLawTypeInternational</class>
+    <class>mn.ineg.model.QuestionCategory</class>
+    <class>mn.ineg.model.MGender</class>
+    <class>mn.ineg.model.MNewsCategory</class>
+    <class>mn.ineg.model.MRegDocGovDetails</class>
+    <class>mn.ineg.model.MDivisionContent</class>
+    <class>mn.ineg.model.ScoreDtl</class>
+    <class>mn.ineg.model.MStaff</class>
+    <class>mn.ineg.model.MMarry</class>
+    <class>mn.ineg.model.MWorkCondition</class>
+    <class>mn.ineg.model.MRegDocRoadDetails</class>
+    <class>mn.ineg.model.Answer</class>
+    <class>mn.ineg.model.Question</class>
+    <class>mn.ineg.model.MLawInternational</class>
+    <class>mn.ineg.model.MHistory</class>
+    <class>mn.ineg.model.MRegDocType</class>
+    <class>mn.ineg.model.MRegDocTypeTypes</class>
+    <class>mn.ineg.model.MNews</class>
+    <class>mn.ineg.model.MLaw</class>
+    <class>mn.ineg.model.MIntroduction</class>
+    <class>mn.ineg.model.MLawType</class>
+    <class>mn.ineg.model.QuestionConfig</class>
+    <class>mn.ineg.model.MEnglishLevel</class>
+    <class>mn.ineg.model.MDivision</class>
+    <class>mn.ineg.model.MIntroductionType</class>
+    <class>mn.ineg.model.MnRegDocInegDetails</class>
+    <class>mn.ineg.model.MSkillCategory</class>
+    <class>mn.ineg.model.MStaffStatus</class>
+    <class>mn.ineg.model.UserScore</class>
+    <class>mn.ineg.model.UserSelection</class>
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/ineg?zeroDateTimeBehavior=convertToNull"/>
+      <property name="javax.persistence.jdbc.user" value="root"/>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.password" value="root"/>
+    </properties>
+  </persistence-unit>
+</persistence>

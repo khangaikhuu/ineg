@@ -1,0 +1,125 @@
+
+<!DOCTYPE html>
+<!-- 
+Template Name: Metronic - Responsive Admin Dashboard Template build with Twitter Bootstrap 3.3.5
+Version: 4.5.2
+Author: KeenThemes
+Website: http://www.keenthemes.com/
+Contact: support@keenthemes.com
+Follow: www.twitter.com/keenthemes
+Like: www.facebook.com/keenthemes
+Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes
+License: You must have a valid license purchased only from themeforest(the above link) in order to legally use the theme for your project.
+-->
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en" data-layout-decorator="layouts/default-layout">
+    <!--<![endif]-->
+    <!-- BEGIN HEAD -->
+
+    <head>
+        <link href="/css/bootstrap-wysihtml5.css" rel="stylesheet" type="text/css" />
+        <link href="/css/bootstrap-markdown.min.css" rel="stylesheet" type="text/css" />
+        <link href="/css/summernote.css" rel="stylesheet" type="text/css" />
+        <link rel="shortcut icon" href="favicon.ico" />
+    </head>
+
+    <!-- END HEAD -->
+
+    <body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper" data-layout-fragment="content">
+                <!-- BEGIN CONTENT BODY -->
+                <div class="page-content">
+                    <!-- BEGIN PAGE HEADER-->
+
+                    <!-- BEGIN PAGE BAR -->
+                    <div class="page-bar">
+                        <ul class="page-breadcrumb">
+                            <li>
+                                <a href="index.html">ИНЕГ-ийн НХҮА</a>
+                                <i class="fa fa-circle"></i>
+                            </li>
+                            <li>
+                                <span>Түүх</span>
+                            </li>
+                        </ul>
+                        <div class="page-toolbar">
+                            <div class="btn-group pull-right">
+                                <button type="button" class="btn green btn-sm btn-outline dropdown-toggle" data-toggle="dropdown"> Actions
+                                    <i class="fa fa-angle-down"></i>
+                                </button>
+                                <ul class="dropdown-menu pull-right" role="menu">
+                                    <li>
+                                        <a href="#">
+                                            <i class="icon-bell"></i> Action</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="icon-shield"></i> Another action</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="icon-user"></i> Something else here</a>
+                                    </li>
+                                    <li class="divider"> </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="icon-bag"></i> Separated link</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END PAGE BAR -->
+                    <!-- BEGIN PAGE TITLE-->
+                    <h3 class="page-title"> Танилцуулга
+                        <small>ИНЕГ НХҮА-ийн Түүх</small>
+                    </h3>
+                    <!-- END PAGE TITLE-->
+                    <!-- END PAGE HEADER-->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <!-- BEGIN EXTRAS PORTLET-->
+                            <div class="portlet light form-fit bordered">
+                                <div class="portlet-title">
+                                    <div class="caption">
+                                        <i class=" icon-layers font-green"></i>
+                                        <span class="caption-subject font-green bold uppercase">Түүхийн засварын горим</span>
+                                    </div>
+                                </div>
+                                <div class="portlet-body form">
+                                    <form id="summernoteForm" class="form-horizontal form-bordered" th:object="${history}" th:action="@{/history/save}" method="post" onsubmit="return summernoteForm()">
+                                        <div class="form-body">
+                                            <div class="form-group last">
+                                                <input type="hidden" th:field="*{id}"/>
+                                                <div class="col-md-10 click2edit">
+                                                    <textarea  rows = "20" cols = "80" th:field = "*{content}" name="summernote" id="summernote_1" > </textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-actions">
+                                            <div class="row">
+                                                <div class="col-md-offset-2 col-md-10">
+                                                    <button type="submit" class="btn green">
+                                                        <i class="fa fa-check"></i> Хадгалах</button>
+                                                    <button type="button" class="btn default">Болих</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        
+    </body>
+</html>
