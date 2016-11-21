@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" data-layout-decorator="layouts/default-layout">
     <head>
-        <title>History</title>
+        <title>Introduction</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     </head>
     <body>
@@ -17,7 +17,7 @@
                             <i class="fa fa-circle"></i>
                         </li>
                         <li>
-                            <a href="/smartweb/history/index">Түүх</a>
+                            <a href="/divisions/index">Танилцуулга</a>
                             <i class="fa fa-circle"></i>
                         </li>
                     </ul>
@@ -30,8 +30,8 @@
                             <div class="portlet-title">
                                 <div class="caption font-purple-plum">
                                     <i class="icon-speech font-purple-plum"></i>
-                                    <span class="caption-subject bold uppercase"> Түүх </span>
-                                    <span class="caption-helper">Нислэгийн хөдөлгөөний үйлчилгээний албаны түүх</span>
+                                    <span class="caption-subject bold uppercase"> Нислэгийн мэдээллийн үйлчилгээ </span>
+                                    <span class="caption-helper"></span>
                                 </div>
                                 <div class="actions">
                                     <a class="btn btn-circle btn-icon-only btn-default fullscreen" href="javascript:;" data-original-title="" title=""> </a>
@@ -39,11 +39,9 @@
                             </div>
                             <div class="portlet-body">
                                 <div id="context" data-toggle="context" data-target="#context-menu">
-                                    
-                                     <p class="form-control-static" th:remove="tag" th:utext="${history.content}"></p>
+                                     <p class="form-control-static" th:remove="tag" th:utext="${flightinfo.content}"></p>
                                 </div>
                                 <!-- Your custom menu with dropdown-menu as default styling -->
-                                
                             </div>
                         </div>
                         <!-- END PORTLET-->

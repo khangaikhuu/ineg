@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+ 
+    <title>Spring Framework Guru</title>
+ 
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+</head>
+<body>
+<div class="container">
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+    <div th:if="${not #lists.isEmpty(docrules)}">
+        <h1>Захирамжийн төрөл</h1>
+        <table>
+            <tr>
+                <th>Дугаар</th>
+                <th>Нэр</th>
+                <th>Төрөл</th>
+            </tr>
+            <tr th:each="docrule : ${docrules}">
+                <td th:text="${docrule.id}"></td>
+                <td th:text="${docrule.name}"></td>
+                <td th:text="${docrule.docTypeId.name}"></td>
+                <td><a th:href="${'/docrules/' + docrule.id}">View</a></td>
+                <td><a th:href="${'/docrules/edit/' + docrule.id}">Edit</a></td>
+                <td><a th:href="${'/docrules/delete/' + docrule.id}">Delete</a></td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+ xmlns:th="http://www.thymeleaf.org">
+<head data-th-fragment="header">
+    <meta charset="utf-8" />
+ <link type="text/css" rel="stylesheet" href="../../resources/css/style.css" th:href="@{/resources/css/style.css}"/>
+ <title data-th-text="#{strategy.edit.page.title}">temp title</title>
+</head>
+<body>
+ <form action="#" data-th-action="@{/law/edit}" data-th-object="${lawObject}" method="post">
+ <table class="box-table-a">
+  <caption data-th-text="#{strategy.edit.form.title}">Add Title</caption>
+  <tbody>
+   <tr>
+    <td >Temp Type</td>
+    <td><input type="text" hidden="hidden" data-th-value="*{lawId}" data-th-field="*{lawId}" />
+        <input type="text" data-th-value="*{approvedYear}" data-th-field="*{approvedYear}" /></td>
+   </tr>
+   <tr>
+    <td >Temp Name</td>
+    <td><input type="text" data-th-value="*{lawName}" data-th-field="*{lawName}" /></td>
+   </tr>
+   <tr>
+    <td>
+     <button type="submit" name="action" value="save" data-th-text="#{Update}">save</button>
+    </td>
+    <td>
+     <button type="submit" name="action" value="cancel" data-th-text="#{Cancel}">cancel</button>
+    </td>
+   </tr>
+  </tbody>
+ </table>
+ </form>
+</body>
+</html>

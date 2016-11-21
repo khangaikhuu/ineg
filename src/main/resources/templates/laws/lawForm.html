@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" data-layout-decorator="layouts/default-layout">
+    <head>
+        <title>Law Types</title>
+        <!-- BEGIN PAGE LEVEL PLUGINS -->
+
+        <!-- END PAGE LEVEL PLUGINS -->
+    </head>
+    <body>
+        <div class="page-content-wrapper" data-layout-fragment="content">
+
+            <!-- BEGIN CONTENT BODY -->
+            <div class="page-content">
+                <!-- BEGIN PAGE HEADER-->
+
+                <!-- BEGIN PAGE BAR -->
+                <div class="page-bar">
+                    <ul class="page-breadcrumb">
+                        <li>
+                            <a href="/law/list">Монгол Улсын Хууль</a>
+                            <i class="fa fa-circle"></i>
+                        </li>
+                        <li>
+                            <a href="#">Tables</a>
+                            <i class="fa fa-circle"></i>
+                        </li>
+                        <li>
+                            <span>Static Tables</span>
+                        </li>
+                    </ul>
+                </div>
+                <h2>Хуулийн Дэлгэрэнгүй</h2>
+                <div>
+                    <form  action="#" class="form-horizontal" data-th-object="${law}" data-th-action="@{/law/save}" method="post">
+                        <input type="hidden" id ="lawId" th:field="${law.lawId}"/>
+                        <input type="hidden" id ="createdAt" th:field="${law.createdAt}"/>
+                        <input type="hidden" id ="createdBy" th:field="${law.createdBy}"/>
+                        <input 
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Хуулийн Нэр</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="lawName" th:field="${law.lawName}"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Батлагдсан</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="approvedYear"  th:field="${law.approvedYear}"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Өөрчлөгдсөн</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="changedYear" th:field="${law.changedYear}"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Файл:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="path" th:field="${law.path}"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Хуулийн төрөл сонгох :</label>
+                            <div class="col-sm-10">
+                                <select id="lawTypes" th:field="*{lawTypeId}">
+                                    <option th:each="lawType : ${lawTypes}"  th:value="${{lawType}}" th:text="${lawType.name}"></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <button type="submit" class="btn btn-default">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- END CONTENT BODY -->
+        </div>
+
+
+    </body>
+</html>
+

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" data-layout-decorator="layouts/default-layout">
+    <head>
+        <title>Хуулийн дэлгэрэнгүй</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    </head>
+    <body>
+        <div class="page-content-wrapper" data-layout-fragment="content">
+
+            <!-- BEGIN CONTENT BODY -->
+            <div class="page-content">
+                <!-- BEGIN PAGE HEADER-->
+
+                <!-- BEGIN PAGE BAR -->
+                <div class="page-bar">
+                    <ul class="page-breadcrumb">
+                        <li>
+                            <a href="index.html">Home</a>
+                            <i class="fa fa-circle"></i>
+                        </li>
+                        <li>
+                            <a href="#">Tables</a>
+                            <i class="fa fa-circle"></i>
+                        </li>
+                        <li>
+                            <span>Static Tables</span>
+                        </li>
+                    </ul>
+                    <div class="page-toolbar">
+                        <div class="btn-group pull-right">
+                            <button type="button" class="btn green btn-sm btn-outline dropdown-toggle" data-toggle="dropdown"> Actions
+                                <i class="fa fa-angle-down"></i>
+                            </button>
+                            <ul class="dropdown-menu pull-right" role="menu">
+                                <li>
+                                    <a href="#">
+                                        <i class="icon-bell"></i> Action</a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="icon-shield"></i> Another action</a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="icon-user"></i> Something else here</a>
+                                </li>
+                                <li class="divider"> </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="icon-bag"></i> Separated link</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <h2>Хуулийн Дэлгэрэнгүй</h2>
+                <div>
+                    <form class="form-horizontal">
+                        <input type="hidden" th:field="${law.lawId}"/>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Хуулийн Нэр:</label>
+                            <div class="col-sm-10">
+                                <p class="form-control-static" th:text="${law.lawName}"></p></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Батлагдсан өдөр:</label>
+                            <div class="col-sm-10">
+                                <p class="form-control-static" th:text="${law.approvedYear}"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Өөрчлөгдсөн өдөр:</label>
+                            <div class="col-sm-10">
+                                <p class="form-control-static" th:text="${law.changedYear}"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Оруулсан:</label>
+                            <div class="col-sm-10">
+                                <p class="form-control-static" th:text="${law.createdBy}">url....</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Хуулийн Төрөл:</label>
+                            <div class="col-sm-10">
+                                <p class="form-control-static" th:text="${law.lawTypeId.name}">url....</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Файл:</label>
+                            <div class="col-sm-10">
+                                <p class="form-control-static" th:text="${law.path}">url....</p>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- END CONTENT BODY -->
+        </div>
+    </body>
+</html>
+
