@@ -8,8 +8,9 @@ package mn.ineg.controller;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import mn.ineg.model.MLaw;
 import mn.ineg.model.MLawType;
 import mn.ineg.formatter.LawTypeEditor;
@@ -37,20 +38,34 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping("/law")
 public class LawController {
-    
+
     static Logger logger = LoggerFactory.getLogger(LawController.class);
     @Autowired
     private LawCrudRepository lawCrudRepository;
-    
+
     @Autowired
     private LawRestRepository lawRestRepository;
-    
+
     @Autowired
     private LawTypeRepository lawTypeRepository;
-    
+
     @InitBinder
     public void initBinder(WebDataBinder binder) {
         binder.registerCustomEditor(MLawType.class, new LawTypeEditor(lawTypeRepository));
+    }
+
+    /**
+     * Get list of all MLawTypes
+     * @return 
+     */
+    @ModelAttribute("allLawTypes")
+    public List<MLawType> populateVarieties() {
+        Iterable<MLawType> lawTypes = lawTypeRepository.findAll();
+        List<MLawType> lawTypeList = new LinkedList<>();
+        for (MLawType i : lawTypes){
+            lawTypeList.add(i);
+        }
+        return lawTypeList;
     }
 
     /**
@@ -114,15 +129,6 @@ public class LawController {
     @RequestMapping(value = "/saveNew", method = RequestMethod.POST)
     public String saveLaw(@ModelAttribute("addForm") MLaw law,
             HttpServletRequest request) throws ParseException {
-//    public String saveLaw(HttpServletRequest request,
-//            @RequestParam("law_name") String law_name,
-//            @RequestParam("law_created_at") String law_created_at,
-//            @RequestParam("law_created_by") Integer law_created_by,
-//            @RequestParam("law_approved_year") String law_approved_year,
-//            @RequestParam("law_changed_year") String law_changed_year,
-//            @RequestParam("law_path") String law_path,
-//            @RequestParam("law_type_id") String law_type_id_name
-//    ) throws ParseException {
         System.out.println("MLaw Object " + law.getLawId());
         System.out.println("Requests " + request.getParameterMap());
         System.out.println("1 : " + request.getParameter("law_type_id"));
@@ -133,18 +139,15 @@ public class LawController {
         System.out.println("6 : " + request.getParameter("law_path"));
         System.out.println("7 : " + request.getParameter("law_created_by"));
         System.out.println("7 : " + request.getParameter("law_type_id"));
-        
-//        ModelAndView modelAndView = new ModelAndView("redirect:/law/list");
-//        String message = null;
+
         String action = "save";
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd");
         Date date;
-        
+
         if (action.equals("save")) {
             MLaw mLaw = new MLaw();
             mLaw.setLawName(request.getParameter("law_name"));
             MLawType mlawtype = lawTypeRepository.findOne(1);
-            String message = null;
             date = formatter.parse(request.getParameter("law_approved_year"));
             mLaw.setApprovedYear(date);
             date = formatter.parse(request.getParameter("law_changed_year"));
@@ -190,7 +193,7 @@ public class LawController {
             @RequestParam("law_changed_year") String law_changed_year,
             @RequestParam("law_path") String law_path,
             @RequestParam("law_type_id") String law_type_id_name) throws ParseException {
-        
+
         ModelAndView modelAndView = new ModelAndView("redirect:/law/list");
         String message = null;
         String action = "save";
@@ -233,7 +236,7 @@ public class LawController {
         lawRestRepository.delete(id);
         return "redirect:law/list";
     }
-    
+
     private Date simpleDateFormatter(Date date) throws ParseException {
         final String OLD_FORMAT = "yyyy-mm-dd";
         final String NEW_FORMAT = "dd/mm/yyyy";

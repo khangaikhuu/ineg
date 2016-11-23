@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" data-layout-decorator="layouts/default-layout">
     <head>
-        <title>Law Types</title>
+        <title>Хуулийн Төрөл</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     </head>
     <body>
@@ -15,7 +15,7 @@
                 <div class="page-bar">
                     <ul class="page-breadcrumb">
                         <li>
-                            <a href="index.html">Хууль, Эрх Зүй</a>
+                            <a href="/law/list">Хууль, Эрх Зүй</a>
                             <i class="fa fa-circle"></i>
                         </li>
                         <li>
@@ -23,7 +23,7 @@
                             <i class="fa fa-circle"></i>
                         </li>
                         <li>
-                            <span>Хуулийн жагсаалт</span>
+                            <span>Хуулийн төрлийн жагсаалт</span>
                         </li>
                     </ul>
                 </div>
@@ -34,9 +34,9 @@
                         <div class="portlet box blue">
                             <div class="portlet-title">
                                 <div class="caption">
-                                    <i class="fa fa-comments"></i>Монгол Улсын хуулиуд </div>
+                                    <i class="fa fa-comments"></i>Хуулийн төрөл </div>
                                 <div class="actions">
-                                    <a class="btn grey-salsa btn-sm active" href="/law/new" > Хууль нэмэх
+                                    <a class="btn grey-salsa btn-sm active" href="/lawtype/create" > Хуулийн Төрөл нэмэх
                                         <i class="fa fa-plus"></i>
                                     </a>
                                 </div>
@@ -48,14 +48,13 @@
                                         <thead>
                                             <tr>
                                                 <th>
-                                                    <i class="fa fa-user"></i> Хуулийн Нэр </th>
+                                                     &#8470; </th>
                                                 <th class="hidden-xs">
-                                                    <i class="fa fa-clock-o"></i> Баталсан Огноо </th>
+                                                    <i class="fa fa-clock-o"></i> Хуулийн Төрлийн Нэр </th>
                                                 <th class="hidden-xs">
-                                                    <i class="fa fa-clock-o"></i> Өөрчлөгдсөн Огноо </th>
+                                                    <i class="fa fa-edit"></i>  </th>
                                                 <th>
-
-                                                    <i class="fa fa-file"></i> Файл </th>
+                                                    <i class="fa fa-remove"></i>  </th>
                                                 <th> 
                                                 </th>
                                                 <th> 
@@ -63,20 +62,19 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr th:each="law : ${laws}">
-                                                <td th:text="${law.lawName}">
+                                            <tr th:each="lawType : ${lawTypes}">
+                                                <td th:text="${lawType.id}">
                                                     <div class="success"></div>
                                                     <a href="javascript:;">  </a>
                                                 </td>
-                                                <td th:text="${law.approvedYear}"></td>
-                                                <td th:text="${law.changedYear}"></td>
-                                                <td th:text="${law.path}"></td>
+                                                <td th:text="${lawType.name}">
+                                                </td>
                                                 <td>
-                                                    <a href="#" data-th-href="${'/law/edit/' + law.lawId}" class="btn btn-outline btn-circle btn-sm purple">
+                                                    <a href="#" data-th-href="${'/lawtype/edit/' + lawType.id}" class="btn btn-outline btn-circle btn-sm purple">
                                                         <i class="fa fa-edit"></i> Засах </a>
                                                 </td>
                                                 <td>
-                                                    <a th:href="${'/law/list'}" class="btn btn-outline btn-circle btn-sm purple">
+                                                    <a th:href="${'/lawtype/delete/' + lawType.id}" class="btn btn-outline btn-circle btn-sm purple">
                                                         <i class="fa fa-remove"></i> Устгах </a>
                                                 </td>
                                             </tr>
