@@ -270,7 +270,7 @@ public class LawController {
      */
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public ModelAndView deleteLaw(@PathVariable Integer id) {
-        ModelAndView view = new ModelAndView("redirect:law/list");
+        ModelAndView view = new ModelAndView("redirect:/law/list");
         lawCrudRepository.delete(id);
         return view;
     }

@@ -42,36 +42,19 @@
                             </div>
                             <div class="portlet-body form">
                                 <!--<form  action="" id="bForm" class="form-horizontal" data-th-object="${law}" data-th-action="@{/law/edit}" method="post">-->
-                                <form  action="#" th:action="@{/law/save}"  id="editForm" name="law_form" th:object="${law}" class="form-horizontal"  method="post" role="form" enctype=multipart/form-data">
+                                <form  action="#" th:action="@{/lawinternational/saveNew}"  id="editForm" name="law_form" th:object="${law}" class="form-horizontal"  method="post" role="form" enctype=multipart/form-data">
                                     <div class="form-body">
-                                        <input type="hidden" name="law_id" th:value="*{lawId}"/>
-                                        <input type="hidden" name="law_created_at" th:value="*{createdAt}" />
-                                        <input type="hidden" name="law_created_by" th:value="*{createdBy}" />
-                                        
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Хуулийн Нэр</label>
                                             <div class="col-sm-6">
-                                                <input type="text" class="form-control" name="law_name" th:value="*{lawName}" />
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">Батлагдсан</label>
-                                            <div class="col-sm-6">
-                                                <input type="text" class="form-control datepicker" name="law_approved_year" th:value="*{approvedYear}"/>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">Өөрчлөгдсөн</label>
-                                            <div class="col-sm-6">
-                                                <input type="text" class="form-control datepicker"
-                                                       name="law_changed_year" th:value="*{changedYear}" />
+                                                <input type="text" class="form-control" name="law_name" th:value="*{name}" />
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Файл</label>
                                             <div class="col-sm-6">
-                                                <!--<input type="text" class="form-control" name="law_path" th:value="${law.path}"/>-->
-                                                <input type="file" class="form-control" name="file" id="file" />
+                                                <input type="text" class="form-control" name="law_path" th:value="*{path}"/>
+                                                <!--<input type="file" class="form-control" name="file" id="file" />-->
                                             </div>
                                         </div>
                                         <div class="form-group">

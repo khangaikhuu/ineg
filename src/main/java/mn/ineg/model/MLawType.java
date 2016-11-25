@@ -28,11 +28,11 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "m_law_type")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "MLawType.findAll", query = "SELECT m FROM MLawType m"),
-    @NamedQuery(name = "MLawType.findById", query = "SELECT m FROM MLawType m WHERE m.id = :id"),
-    @NamedQuery(name = "MLawType.findByName", query = "SELECT m FROM MLawType m WHERE m.name = :name")})
+//@XmlRootElement
+//@NamedQueries({
+//    @NamedQuery(name = "MLawType.findAll", query = "SELECT m FROM MLawType m"),
+//    @NamedQuery(name = "MLawType.findById", query = "SELECT m FROM MLawType m WHERE m.id = :id"),
+//    @NamedQuery(name = "MLawType.findByName", query = "SELECT m FROM MLawType m WHERE m.name = :name")})
 public class MLawType implements Serializable {
 
     private static final long serialVersionUID = 1L;

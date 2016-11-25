@@ -5,7 +5,6 @@
  */
 package mn.ineg.controller;
 
-import javax.websocket.server.PathParam;
 import mn.ineg.model.MLawTypeInternational;
 import mn.ineg.service.LawInternationalTypeCrudRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,7 +65,7 @@ public class LawInternationalTypeController {
      */
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public ModelAndView saveType(
-            @RequestParam("law_type_id") String law_type_id,
+            @RequestParam("law_type_id") Integer law_type_id,
             @RequestParam("law_type_name") String law_type_name,
             @RequestParam("action") String action) {
         ModelAndView view = new ModelAndView("redirect:/lawtypeinter/list");
@@ -77,7 +76,7 @@ public class LawInternationalTypeController {
                 lawITypeCrudRepository.save(lawType);
                 System.out.println("International Law Added");
             } else {
-                MLawTypeInternational lawType = lawITypeCrudRepository.findOne(Integer.parseInt(law_type_id));
+                MLawTypeInternational lawType = lawITypeCrudRepository.findOne(law_type_id);
                 lawType.setName(law_type_name);
                 lawITypeCrudRepository.save(lawType);
             }

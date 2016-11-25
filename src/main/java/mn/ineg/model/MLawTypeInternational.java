@@ -28,16 +28,11 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "m_law_type_international")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "MLawTypeInternational.findAll", query = "SELECT m FROM MLawTypeInternational m"),
-    @NamedQuery(name = "MLawTypeInternational.findById", query = "SELECT m FROM MLawTypeInternational m WHERE m.id = :id"),
-    @NamedQuery(name = "MLawTypeInternational.findByName", query = "SELECT m FROM MLawTypeInternational m WHERE m.name = :name")})
 public class MLawTypeInternational implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
@@ -108,7 +103,7 @@ public class MLawTypeInternational implements Serializable {
 
     @Override
     public String toString() {
-        return "mn.ineg.MLawTypeInternational[ id=" + id + " ]";
+        return "mn.ineg.model.MLawTypeInternational[ id=" + id + " ]";
     }
     
 }

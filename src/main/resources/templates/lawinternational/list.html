@@ -36,7 +36,7 @@
                                 <div class="caption">
                                     <i class="fa fa-comments"></i>Хууль Эрх Зүй </div>
                                 <div class="actions">
-                                    <a class="btn grey-salsa btn-sm active" href="/law/new" > Хууль нэмэх
+                                    <a class="btn grey-salsa btn-sm active" href="/lawinternational/new" > Хууль нэмэх
                                         <i class="fa fa-plus"></i>
                                     </a>
                                 </div>
@@ -49,13 +49,7 @@
                                             <tr>
                                                 <th>
                                                     <i class="fa fa-user"></i> Хуулийн Нэр </th>
-                                                <th class="hidden-xs">
-                                                    <i class="fa fa-clock-o"></i> Баталсан Огноо </th>
-                                                <th class="hidden-xs">
-                                                    <i class="fa fa-clock-o"></i> Өөрчлөгдсөн Огноо </th>
-                                                <th>
-
-                                                    <i class="fa fa-file"></i> Файл </th>
+                                                <th>  <i class="fa fa-file"></i> Файл </th>
                                                 <th> 
                                                 </th>
                                                 <th> 
@@ -64,19 +58,18 @@
                                         </thead>
                                         <tbody>
                                             <tr th:each="law : ${laws}">
-                                                <td th:text="${law.lawName}">
+                                                <td th:text="${law.name}">
                                                     <div class="success"></div>
                                                     <a href="javascript:;">  </a>
                                                 </td>
-                                                <td th:text="${law.approvedYear}"></td>
-                                                <td th:text="${law.changedYear}"></td>
+                                                
                                                 <td th:text="${law.path}"></td>
                                                 <td>
-                                                    <a href="#" data-th-href="${'/law/edit/' + law.lawId}" class="btn btn-outline btn-circle btn-sm purple">
+                                                    <a href="#" data-th-href="${'/lawinternational/edit/' + law.id}" class="btn btn-outline btn-circle btn-sm purple">
                                                         <i class="fa fa-edit"></i> Засах </a>
                                                 </td>
                                                 <td>
-                                                    <a th:href="${'/law/delete/' + law.lawId}" class="btn btn-outline btn-circle btn-sm purple">
+                                                    <a th:href="${'/lawinternational/delete/' + law.id}" class="btn btn-outline btn-circle btn-sm purple">
                                                         <i class="fa fa-remove"></i> Устгах </a>
                                                 </td>
                                             </tr>

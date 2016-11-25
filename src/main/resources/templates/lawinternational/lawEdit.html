@@ -1,16 +1,80 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" data-layout-decorator="layouts/default-layout">
     <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Law International Edit</title>
     </head>
     <body>
-        <div>TODO write content</div>
+        <div class="page-content-wrapper" data-layout-fragment="content">
+
+            <!-- BEGIN CONTENT BODY -->
+            <div class="page-content">
+                <!-- BEGIN PAGE HEADER-->
+
+                <!-- BEGIN PAGE BAR -->
+                <div class="page-bar">
+                    <ul class="page-breadcrumb">
+                        <li>
+                            <a href="/lawtypeinter/list">Олон улсын Хууль эрх зүй</a>
+                            <i class="fa fa-circle"></i>
+                        </li>
+                        <li>
+                            <a href="#">Засах</a>
+                            <i class="fa fa-circle"></i>
+                        </li>
+                    </ul>
+                </div>
+                <div class="row">
+                    <div class="col-md-10">
+                        <div class="portlet box blue">
+                            <div class="portlet-title">
+                                <div class="caption">
+                                    <i class="fa fa-legal"></i> Олон улсын Хууль эрх зүй засах </div>
+                                <div class="tools">
+                                    <a href="" class="collapse"> </a>
+                                    <a href="" class="reload"> </a>
+                                </div>
+                            </div>
+                            <div class="portlet-body form">
+                                <form  action="#" th:action="@{/lawinternational/save}"  id="editForm" name="law_international_form" th:object="${law}" class="form-horizontal"  method="post" role="form" >
+                                    <div class="form-body">        
+                                        <input type="hidden" name="law_id" th:value="*{id}"/>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label"> Нэр</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control" name="law_name" th:value="*{name}" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">Файл</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control" name="law_path" th:value="*{path}" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">Төрөл сонгох </label>
+                                            <div class="col-sm-6">
+                                                <select id="lawTypes" data-th-value="${law.lawTypeId}">
+                                                    <option data-th-each="lawType : ${lawTypes}" 
+                                                            data-the-value ="${lawType.id}"
+                                                            data-th-text="${lawType.name}"  
+                                                            >
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-actions">
+                                            <button type="submit" name="action" value="save"  class="btn btn-green">Хадгалах</button>
+                                            <button type="submit" name="action" value="cancel" class="btn btn-default">Цуцлах</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END CONTENT BODY -->
+        </div>
     </body>
 </html>
+
