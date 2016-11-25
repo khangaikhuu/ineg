@@ -35,7 +35,7 @@
                                 </div>
                             </div>
                             <div class="portlet-body form">
-                                <form  action="#" th:action="@{/lawinternational/save}"  id="editForm" name="law_international_form" th:object="${law}" class="form-horizontal"  method="post" role="form" >
+                                <form  action="#" th:action="@{/lawinternational/saveEdit}"  id="editForm" name="law_international_form" th:object="${law}" class="form-horizontal"  method="post" role="form" >
                                     <div class="form-body">        
                                         <input type="hidden" name="law_id" th:value="*{id}"/>
                                         <div class="form-group">
@@ -53,11 +53,17 @@
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Төрөл сонгох </label>
                                             <div class="col-sm-6">
-                                                <select id="lawTypes" data-th-value="${law.lawTypeId}">
-                                                    <option data-th-each="lawType : ${lawTypes}" 
-                                                            data-the-value ="${lawType.id}"
-                                                            data-th-text="${lawType.name}"  
-                                                            >
+                                                <!--                                                <select id="lawTypes" name="law_type_id" data-th-value="${law.lawTypeId}">
+                                                                                                    <option data-th-each="lawType : ${lawTypes}" 
+                                                                                                            data-the-value ="${lawType.id}"
+                                                                                                            data-th-text="${lawType.name}"  
+                                                                                                            >
+                                                                                                    </option>
+                                                                                                </select>-->
+                                                <select name="law_type_id" th:value="*{lawTypeId}">
+                                                    <option th:each="role, lawStat : ${lawTypes}"
+                                                            th:value="${role.id}"
+                                                            th:text="${role.name}">
                                                     </option>
                                                 </select>
                                             </div>

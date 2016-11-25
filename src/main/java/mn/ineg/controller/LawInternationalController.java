@@ -65,9 +65,9 @@ public class LawInternationalController {
      * @return
      */
     @RequestMapping("/edit/{id}")
-    public ModelAndView editInternationalLaw(@PathVariable Integer id) {
+    public ModelAndView editInternationalLaw(@PathVariable String id) {
         ModelAndView view = new ModelAndView("lawinternational/lawEdit");
-        view.addObject("law", lawIRRepository.findOne(id));
+        view.addObject("law", lawIRRepository.findOne(Integer.parseInt(id)));
         view.addObject("lawTypes", lawITRRepository.findAll());
         return view;
     }
@@ -98,6 +98,52 @@ public class LawInternationalController {
         if (action.equals("cancel")) {
             System.out.println("International Law Canceled");
         }
+        return view;
+    }
+    
+    /**
+     * Save edited internation law
+     * @param id
+     * @return
+     */
+    @RequestMapping(value = "/saveEdit", method = RequestMethod.POST)
+    public ModelAndView saveEditInternationalLaw(
+            @RequestParam("law_id") String law_id,
+            @RequestParam("law_name") String law_name,
+            @RequestParam("law_path") String law_path,
+            @RequestParam("law_type_id") String law_type_id,
+            @RequestParam("action") String action) {
+        ModelAndView view = new ModelAndView("redirect:/lawinternational/list");
+        if (action.equals("save")) {
+            System.out.println("Law Id " + law_id);
+            System.out.println("Law Name " + law_name);
+            System.out.println("Law Path " + law_path);
+            System.out.println("Law Type Id " + law_type_id);
+            System.out.println("Law action " + action);
+            MLawInternational law = lawIRRepository.findOne(Integer.parseInt(law_id));
+            law.setName(law_name);
+            law.setPath(law_path);
+            law.setLawTypeId(lawITRRepository.findOne(Integer.parseInt(law_type_id)));
+            System.out.println("Law Type : " + lawITRRepository.findOne(Integer.parseInt(law_type_id)));
+            lawIRCRepository.save(law);
+            view.addObject("law", law);
+            System.out.println("International Law Edited");
+        }
+        if (action.equals("cancel")) {
+            System.out.println("International Law Canceled");
+        }
+        return view;
+    }
+    
+    /**
+     *
+     * @param id
+     * @return
+     */
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+    public ModelAndView deleteInternationalLaw(@PathVariable Integer id) {
+        ModelAndView view = new ModelAndView("redirect:/lawinternational/list");
+        lawIRCRepository.delete(id);
         return view;
     }
 
