@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" data-layout-decorator="layouts/default-layout">
+    <head>
+        <title>International Law</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    </head>
+    <body>
+        <div class="page-content-wrapper" data-layout-fragment="content">
+
+            <!-- BEGIN CONTENT BODY -->
+            <div class="page-content">
+                <!-- BEGIN PAGE HEADER-->
+
+                <!-- BEGIN PAGE BAR -->
+                <div class="page-bar">
+                    <ul class="page-breadcrumb">
+                        <li>
+                            <a href="/">Хууль, Эрх Зүй</a>
+                            <i class="fa fa-circle"></i>
+                        </li>
+                        <li>
+                            <a href="#">Дотоод</a>
+                            <i class="fa fa-circle"></i>
+                        </li>
+                        <li>
+                            <span>Хуулийн жагсаалт</span>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END PAGE BAR -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- BEGIN SAMPLE TABLE PORTLET-->
+                        <div class="portlet box blue">
+                            <div class="portlet-title">
+                                <div class="caption">
+                                    <i class="fa fa-comments"></i>Хууль Эрх Зүй </div>
+                                <div class="actions">
+                                    <a class="btn grey-salsa btn-sm active" href="/law/new" > Хууль нэмэх
+                                        <i class="fa fa-plus"></i>
+                                    </a>
+                                </div>
+
+                            </div>
+                            <div class="portlet-body">
+                                <div class="table-scrollable">
+                                    <table class="table table-striped table-bordered table-advance table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    <i class="fa fa-user"></i> Хуулийн Нэр </th>
+                                                <th class="hidden-xs">
+                                                    <i class="fa fa-clock-o"></i> Баталсан Огноо </th>
+                                                <th class="hidden-xs">
+                                                    <i class="fa fa-clock-o"></i> Өөрчлөгдсөн Огноо </th>
+                                                <th>
+
+                                                    <i class="fa fa-file"></i> Файл </th>
+                                                <th> 
+                                                </th>
+                                                <th> 
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr th:each="law : ${laws}">
+                                                <td th:text="${law.lawName}">
+                                                    <div class="success"></div>
+                                                    <a href="javascript:;">  </a>
+                                                </td>
+                                                <td th:text="${law.approvedYear}"></td>
+                                                <td th:text="${law.changedYear}"></td>
+                                                <td th:text="${law.path}"></td>
+                                                <td>
+                                                    <a href="#" data-th-href="${'/law/edit/' + law.lawId}" class="btn btn-outline btn-circle btn-sm purple">
+                                                        <i class="fa fa-edit"></i> Засах </a>
+                                                </td>
+                                                <td>
+                                                    <a th:href="${'/law/delete/' + law.lawId}" class="btn btn-outline btn-circle btn-sm purple">
+                                                        <i class="fa fa-remove"></i> Устгах </a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END SAMPLE TABLE PORTLET-->
+                    </div>
+                </div>
+                <div>
+
+                </div>
+            </div>
+            <!-- END CONTENT BODY -->
+        </div>
+    </body>
+</html>
+

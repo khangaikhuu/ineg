@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" data-layout-decorator="layouts/default-layout">
+    <head>
+        <title>International Law Type</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    </head>
+    <body>
+        <div class="page-content-wrapper" data-layout-fragment="content">
+
+            <!-- BEGIN CONTENT BODY -->
+            <div class="page-content">
+                <!-- BEGIN PAGE HEADER-->
+
+                <!-- BEGIN PAGE BAR -->
+                <div class="page-bar">
+                    <ul class="page-breadcrumb">
+                        <li>
+                            <a href="/">Хууль, Эрх Зүй</a>
+                            <i class="fa fa-circle"></i>
+                        </li>
+                        <li>
+                            <a href="#">Гадаад </a>
+                            <i class="fa fa-circle"></i>
+                        </li>
+                        <li>
+                            <span>Олон Улсын хуулийн жагсаалт</span>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END PAGE BAR -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- BEGIN SAMPLE TABLE PORTLET-->
+                        <div class="portlet box blue">
+                            <div class="portlet-title">
+                                <div class="caption">
+                                    <i class="fa fa-comments"></i>Олон Улсын Хууль Эрх Зүй </div>
+                                <div class="actions">
+                                    <a class="btn grey-salsa btn-sm active" href="/lawtypeinter/new" > Төрөл нэмэх
+                                        <i class="fa fa-plus"></i>
+                                    </a>
+                                </div>
+
+                            </div>
+                            <div class="portlet-body">
+                                <div class="table-scrollable">
+                                    <table class="table table-striped table-bordered table-advance table-hover">
+                                        <thead>
+                                            <tr>
+                                                
+
+                                                <th class="hidden-xs">
+                                                    <i class="fa fa-clock-o"></i> Нэр </th>
+                                                <th> 
+                                                    <i class="fa fa-edit"></i>
+                                                </th>
+                                                <th> 
+                                                    <i class="fa fa-remove"></i>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr th:each="law : ${lawTypes}" th:if="${lawTypes}">
+                                                <td th:text="${law.name}"></td>
+                                                <td>
+                                                    <a href="#" data-th-href="${'/lawtypeinter/edit/' + law.id}" class="btn btn-outline btn-circle btn-sm purple">
+                                                        <i class="fa fa-edit"></i> Засах </a>
+                                                </td>
+                                                <td>
+                                                    <a th:href="${'/lawtypeinter/delete/' + law.id}" class="btn btn-outline btn-circle btn-sm purple">
+                                                        <i class="fa fa-remove"></i> Устгах </a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END SAMPLE TABLE PORTLET-->
+                    </div>
+                </div>
+                <div>
+
+                </div>
+            </div>
+            <!-- END CONTENT BODY -->
+        </div>
+    </body>
+</html>
+

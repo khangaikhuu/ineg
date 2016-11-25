@@ -25,7 +25,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import mn.ineg.repository.LawCrudRepository;
-import mn.ineg.service.FileSystemStorageService;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import mn.ineg.service.LawRestRepository;
@@ -259,9 +258,7 @@ public class LawController {
     }
     
     
-    private String createFilePath(){
-        return "";
-    }
+    
 
 //    @RequestMapping(value="/upload/{}", method = RequestMethod.GET)
 //    public void 
