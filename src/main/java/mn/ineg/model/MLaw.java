@@ -5,6 +5,7 @@
  */
 package mn.ineg.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
@@ -94,6 +95,7 @@ public class MLaw implements Serializable {
         this.lawId = lawId;
     }
 
+    @JsonProperty("name")
     public String getLawName() {
         return lawName;
     }
