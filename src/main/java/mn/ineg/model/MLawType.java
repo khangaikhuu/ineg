@@ -5,6 +5,7 @@
  */
 package mn.ineg.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
@@ -77,7 +78,8 @@ public class MLawType implements Serializable {
         this.name = name;
     }
 
-    @XmlTransient
+    @XmlTransient    
+    @JsonProperty("contentList")
     public List<MLaw> getMLawList() {
         return mLawList;
     }
