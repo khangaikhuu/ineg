@@ -5,11 +5,14 @@
  */
 package mn.ineg.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 import mn.ineg.model.MLaw;
 import mn.ineg.model.MLawType;
@@ -22,13 +25,16 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import mn.ineg.repository.LawCrudRepository;
+import mn.ineg.service.FileSystemStorageService;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import mn.ineg.service.LawRestRepository;
+import mn.ineg.service.StorageService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -38,6 +44,8 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping("/law")
 public class LawController {
+
+    private final StorageService storageService;
 
     static Logger logger = LoggerFactory.getLogger(LawController.class);
     @Autowired
@@ -54,15 +62,21 @@ public class LawController {
         binder.registerCustomEditor(MLawType.class, new LawTypeEditor(lawTypeRepository));
     }
 
+    @Autowired
+    public LawController(StorageService storageService) {
+        this.storageService = storageService;
+    }
+
     /**
      * Get list of all MLawTypes
-     * @return 
+     *
+     * @return
      */
     @ModelAttribute("allLawTypes")
     public List<MLawType> populateVarieties() {
         Iterable<MLawType> lawTypes = lawTypeRepository.findAll();
         List<MLawType> lawTypeList = new LinkedList<>();
-        for (MLawType i : lawTypes){
+        for (MLawType i : lawTypes) {
             lawTypeList.add(i);
         }
         return lawTypeList;
@@ -138,7 +152,7 @@ public class LawController {
         System.out.println("5 : " + request.getParameter("law_name"));
         System.out.println("6 : " + request.getParameter("law_path"));
         System.out.println("7 : " + request.getParameter("law_created_by"));
-        System.out.println("7 : " + request.getParameter("law_type_id"));
+        System.out.println("8 : " + request.getParameter("law_type_id"));
 
         String action = "save";
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd");
@@ -168,12 +182,14 @@ public class LawController {
     public ModelAndView editLawPage(@PathVariable Integer id) {
         MLaw lawObject;
         MLawType lawTypeObject;
+        Iterable<MLawType> lawTypeObjects;
         ModelAndView modelAndView;
         lawObject = lawCrudRepository.findOne(id);
         lawTypeObject = lawTypeRepository.findOne(lawObject.getLawTypeId().getId());
+        lawTypeObjects = lawTypeRepository.findAll();
         modelAndView = new ModelAndView("laws/lawForm");
         modelAndView.addObject("law", lawObject);
-        modelAndView.addObject("lawTypes", lawTypeObject);
+        modelAndView.addObject("lawTypes", lawTypeObjects);
         return modelAndView;
     }
 
@@ -184,47 +200,71 @@ public class LawController {
      * @return
      */
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public ModelAndView editingStrategy(HttpServletRequest request,
+    //public ModelAndView editingStrategy(HttpServletRequest request,
+    public ModelAndView editingStrategy(
+            HttpServletRequest request,
             @RequestParam("law_id") Integer id,
             @RequestParam("law_name") String law_name,
-            @RequestParam("law_created_at") String law_created_at,
-            @RequestParam("law_created_by") Integer law_created_by,
             @RequestParam("law_approved_year") String law_approved_year,
             @RequestParam("law_changed_year") String law_changed_year,
-            @RequestParam("law_path") String law_path,
-            @RequestParam("law_type_id") String law_type_id_name) throws ParseException {
-
+            @RequestParam("action") String action_parameter,
+            //            @RequestParam("law_path") String law_path,
+            @RequestParam("law_type_id") String law_type_id_name,
+            @RequestParam("file") MultipartFile file) throws ParseException, IOException {
+        //view
         ModelAndView modelAndView = new ModelAndView("redirect:/law/list");
-        String message = null;
-        String action = "save";
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd");
         Date date;
-        if (action.equals("save")) {
-            MLaw mlaw;
-            if (id == null) {
-                mlaw = new MLaw();
-            } else {
-                mlaw = lawRestRepository.findOne(id);
-            }
-            MLawType mlawtype = lawTypeRepository.findOne(Integer.parseInt(request.getParameter("law_type_id")));
+        System.out.println("File : " + file.getName());
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd");
+        String rootFolder = "/Users/developer/uploadingdir";
+        String uploadDir = "/internallaw";
+        String filePath = rootFolder + uploadDir;
+        String uploadFileName = "law" + UUID.randomUUID().toString() + ".pdf";
+        String law_file_path = uploadDir + "/" + uploadFileName;
+        File destination = new File(filePath, uploadFileName);
+        String fileName = file.getOriginalFilename();
+        System.out.println("File Content " + file.getContentType());
+        System.out.println("File Name " + fileName);
+        if(!file.isEmpty()){
+            file.transferTo(destination);
+        }
+        //creation of law object
+        if (action_parameter.equals("save")) {
+            System.out.println("Law ID : " + id);
+            System.out.println("Law Type ID : " + law_type_id_name);
+            System.out.println("Law Type Id Type : " + law_type_id_name.getClass());
+            MLaw mlaw = lawRestRepository.findOne(id);
+            
+            MLawType mlawtype = lawTypeRepository.findOne(Integer.parseInt(law_type_id_name));
+            System.out.println("Law Types : " + mlawtype.getName());
             mlaw.setLawName(law_name);
-            date = formatter.parse(request.getParameter("law_approved_year"));
+            date = formatter.parse(law_approved_year);
             mlaw.setApprovedYear(date);
-            date = formatter.parse(request.getParameter("law_changed_year"));
+            date = formatter.parse(law_changed_year);
             mlaw.setChangedYear(date);
-            mlaw.setCreatedBy(law_created_by);
-            mlaw.setPath(law_path);
+            Date createdDate = new Date();
+            mlaw.setCreatedAt(createdDate);
+            mlaw.setCreatedBy(1);
+            mlaw.setPath(law_file_path);
             mlaw.setLawTypeId(mlawtype);
             lawRestRepository.save(mlaw);
-            message = "Law " + mlaw.getLawName() + " was successfully edited";
+            String message = "Law " + mlaw.getLawName() + " was successfully edited";
             modelAndView.addObject("message", message);
         }
-        if (action.equals("cancel")) {
-            message = "Strategy " + law_name + " edit cancelled";
+        if (action_parameter.equals("cancel")) {
+            String message = "Law Save " + law_name + " cancelled";
+            modelAndView.addObject("message", message);
         }
         return modelAndView;
     }
+    
+    
+    private String createFilePath(){
+        return "";
+    }
 
+//    @RequestMapping(value="/upload/{}", method = RequestMethod.GET)
+//    public void 
     /**
      * Delete law
      *
@@ -232,11 +272,18 @@ public class LawController {
      * @return
      */
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
-    public String deleteLaw(@PathVariable Integer id) {
-        lawRestRepository.delete(id);
-        return "redirect:law/list";
+    public ModelAndView deleteLaw(@PathVariable Integer id) {
+        ModelAndView view = new ModelAndView("redirect:law/list");
+        lawCrudRepository.delete(id);
+        return view;
     }
 
+    /**
+     * 
+     * @param date
+     * @return
+     * @throws ParseException 
+     */
     private Date simpleDateFormatter(Date date) throws ParseException {
         final String OLD_FORMAT = "yyyy-mm-dd";
         final String NEW_FORMAT = "dd/mm/yyyy";

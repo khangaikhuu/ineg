@@ -110,5 +110,16 @@ public class LawTypeController {
         }
         return view;
     }
+    /**
+     *
+     * @param id
+     * @return
+     */
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+    public ModelAndView deleteLawTypes(@PathVariable Integer id) {
+        ModelAndView view = new ModelAndView("redirect:lawtypes/list");
+        lawTypeCrudRepository.delete(id);
+        return view;
+    }
 
 }

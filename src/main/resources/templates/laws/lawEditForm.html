@@ -43,12 +43,13 @@
                             </div>
                             <div class="portlet-body form">
                                 <!--<form  action="" id="bForm" class="form-horizontal" data-th-object="${law}" data-th-action="@{/law/edit}" method="post">-->
-                                <form  action="/law/save" id="editForm" name="law_edit_form" class="form-horizontal"  method="post" role="form">
+                                <form  action="/law/save" id="editForm" name="law_edit_form" class="form-horizontal"  method="post" role="form" enctype=multipart/form-data">
                                     <div class="form-body">
                                         <input type="hidden" name="law_id" th:value="${law.lawId}"/>
                                         <input type="hidden" name="law_created_at" th:value="${law.createdAt}" />
                                         <input type="hidden" name="law_created_by" th:value="${law.createdBy}" />
                                         <input type="hidden" name="law_type_id" th:value="${law.lawTypeId.id}" />
+                                        <input type="hidden" name="law_path" th:value="${law.path}" />
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Хуулийн Нэр</label>
                                             <div class="col-sm-6">
@@ -71,14 +72,14 @@
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Файл</label>
                                             <div class="col-sm-6">
-                                                <input type="text" class="form-control" name="law_path" th:value="${law.path}"/>
+                                                <!--<input type="text" class="form-control" name="law_path" th:value="${law.path}"/>-->
+                                                <input type="file" class="form-control" name="law_file" />
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Хуулийн төрөл сонгох </label>
                                             <div class="col-sm-6">
                                                 <select id="lawTypes" data-th-value="${law.lawTypeId}">
-
                                                     <option data-th-each="lawType : ${lawTypes}" 
                                                             data-the-value ="${{lawType.id}}"
                                                             data-th-text="${{lawType.name}}"  

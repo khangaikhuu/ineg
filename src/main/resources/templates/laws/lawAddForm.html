@@ -76,7 +76,7 @@
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Хуулийн төрөл сонгох </label>
                                             <div class="col-sm-6">
-                                                <select id="law_type_id" name="law_type_id" data-th-value="${law.lawTypeId}">
+                                                <select id="law_type_id" name="law_type_id" th:value="${lawTypes}">
                                                     <option data-th-each="lawType : ${lawTypes}" 
                                                             data-the-value ="${lawType.id}"
                                                             data-th-text="${lawType.name}">

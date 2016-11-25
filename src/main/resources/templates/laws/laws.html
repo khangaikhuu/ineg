@@ -15,7 +15,7 @@
                 <div class="page-bar">
                     <ul class="page-breadcrumb">
                         <li>
-                            <a href="index.html">Хууль, Эрх Зүй</a>
+                            <a href="/">Хууль, Эрх Зүй</a>
                             <i class="fa fa-circle"></i>
                         </li>
                         <li>
@@ -34,7 +34,7 @@
                         <div class="portlet box blue">
                             <div class="portlet-title">
                                 <div class="caption">
-                                    <i class="fa fa-comments"></i>Монгол Улсын хуулиуд </div>
+                                    <i class="fa fa-comments"></i>Хууль Эрх Зүй </div>
                                 <div class="actions">
                                     <a class="btn grey-salsa btn-sm active" href="/law/new" > Хууль нэмэх
                                         <i class="fa fa-plus"></i>
@@ -76,7 +76,7 @@
                                                         <i class="fa fa-edit"></i> Засах </a>
                                                 </td>
                                                 <td>
-                                                    <a th:href="${'/law/list'}" class="btn btn-outline btn-circle btn-sm purple">
+                                                    <a th:href="${'/law/delete/' + law.lawId}" class="btn btn-outline btn-circle btn-sm purple">
                                                         <i class="fa fa-remove"></i> Устгах </a>
                                                 </td>
                                             </tr>

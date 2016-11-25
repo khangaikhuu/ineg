@@ -17,7 +17,7 @@ public class StorageProperties {
     /**
      * Folder location for storing files
      */
-    public final String uploadingdir = "/Users/developer/upload";
+    public final String uploadingdir = "/Users/developer/uploadingdir";
 
     private String location = uploadingdir;
 
