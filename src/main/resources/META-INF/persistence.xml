@@ -34,6 +34,9 @@
     <class>mn.ineg.model.MStaffStatus</class>
     <class>mn.ineg.model.UserScore</class>
     <class>mn.ineg.model.UserSelection</class>
+    <class>mn.ineg.model.MNewsCategory_1</class>
+    <class>mn.ineg.model.MStaff_1</class>
+    <class>mn.ineg.model.MFlightSchedule</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/ineg?zeroDateTimeBehavior=convertToNull"/>

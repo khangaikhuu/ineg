@@ -100,7 +100,7 @@ public class MEnglishLevel implements Serializable {
 
     @Override
     public String toString() {
-        return "mn.ineg.MEnglishLevel[ id=" + id + " ]";
+        return "mn.ineg.model.MEnglishLevel[ id=" + id + " ]";
     }
     
 }

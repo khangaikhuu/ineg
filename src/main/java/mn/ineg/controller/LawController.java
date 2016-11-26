@@ -224,7 +224,7 @@ public class LawController {
         String fileName = file.getOriginalFilename();
         System.out.println("File Content " + file.getContentType());
         System.out.println("File Name " + fileName);
-        if(!file.isEmpty()){
+        if (!file.isEmpty()) {
             file.transferTo(destination);
         }
         //creation of law object
@@ -233,7 +233,6 @@ public class LawController {
             System.out.println("Law Type ID : " + law_type_id_name);
             System.out.println("Law Type Id Type : " + law_type_id_name.getClass());
             MLaw mlaw = lawRestRepository.findOne(id);
-            
             MLawType mlawtype = lawTypeRepository.findOne(Integer.parseInt(law_type_id_name));
             System.out.println("Law Types : " + mlawtype.getName());
             mlaw.setLawName(law_name);
@@ -256,9 +255,6 @@ public class LawController {
         }
         return modelAndView;
     }
-    
-    
-    
 
 //    @RequestMapping(value="/upload/{}", method = RequestMethod.GET)
 //    public void 
@@ -276,10 +272,10 @@ public class LawController {
     }
 
     /**
-     * 
+     *
      * @param date
      * @return
-     * @throws ParseException 
+     * @throws ParseException
      */
     private Date simpleDateFormatter(Date date) throws ParseException {
         final String OLD_FORMAT = "yyyy-mm-dd";

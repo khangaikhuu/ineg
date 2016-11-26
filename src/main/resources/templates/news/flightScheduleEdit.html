@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" data-layout-decorator="layouts/default-layout">
+    <head>
+        <title>Flight Schedule Edit Form</title>
+    </head>
+    <body>
+        <div class="page-content-wrapper" data-layout-fragment="content">
+
+            <!-- BEGIN CONTENT BODY -->
+            <div class="page-content">
+                <!-- BEGIN PAGE HEADER-->
+
+                <!-- BEGIN PAGE BAR -->
+                <div class="page-bar">
+                    <ul class="page-breadcrumb">
+                        <li>
+                            <a href="index.html">Мэдээ мэдээлэл</a>
+                            <i class="fa fa-circle"></i>
+                        </li>
+                        <li>
+                            <a href="#">Нислэгийн хуваарь</a>
+                            <i class="fa fa-circle"></i>
+                        </li>
+                        <li>
+                            <span>Шинэ нислэгийн хуваарь засах</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="portlet box blue">
+                            <div class="portlet-title">
+                                <div class="caption">
+                                    <i class="fa fa-legal"></i> Нислэгийн хуваарь засах </div>
+                                <div class="tools">
+                                    <a href="" class="collapse"> </a>
+                                    <a href="" class="reload"> </a>
+                                </div>
+                            </div>
+                            <div class="portlet-body form">
+                                <!--<form  action="" id="bForm" class="form-horizontal" data-th-object="${law}" data-th-action="@{/law/add}" method="post">-->
+                                <form  action="#" th:action="@{/flight/saveEdit}" th:object="${schedule}" id="scheduleAddForm" name="scheduleAddForm" class="form-horizontal"  method="post" role="form">
+                                    <div class="form-body">
+                                        <input type="hidden" name="id" th:value="*{id}"/>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label"> Нисэн Гарах </label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control" placeholder="Нисэх чиглэл оруулах" name="departure" th:value="*{departure}" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">Нисэн буух</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control" placeholder="Буух чиглэл оруулах" name="destination" th:value="*{destination}"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">Аяллын Дугаар</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control" placeholder="Аяллын Дугаар оруулах" name="tripNumber" th:value="*{tripNumber}"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">Тээвэрлэгч</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control " placeholder="Тээвэрлэгч компани оруулах" name="flightCompany" th:value="*{flightCompany}"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">Хөөрөх цаг</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control timepicker timepicker-24" placeholder="Хөөрөх цаг оруулах" name="timeDeparture" th:value="*{timeDeparture}"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">Буух цаг</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control timepicker timepicker-24" placeholder="Буух цаг оруулах" name="timeDestination" th:value="*{timeDestination}"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">Эхлэх Өдөр</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control datepicker" placeholder="Нислэгийн эхлэх өдөр оруулах" name="dateBegin" th:value="*{dateBegin}"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">Буух Өдөр</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control datepicker" placeholder="Нислэгийн буух өдөр оруулах" name="dateEnd" th:value="*{dateEnd}"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-actions">
+                                            <button type="submit" name="action" value="save"  class="btn btn-green">Хадгалах</button>
+                                            <button type="submit" name="action" value="cancel" class="btn btn-default">Цуцлах</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END CONTENT BODY -->
+        </div>
+
+
+    </body>
+</html>
+

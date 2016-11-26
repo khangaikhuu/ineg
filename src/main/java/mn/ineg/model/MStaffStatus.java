@@ -100,7 +100,7 @@ public class MStaffStatus implements Serializable {
 
     @Override
     public String toString() {
-        return "mn.ineg.MStaffStatus[ id=" + id + " ]";
+        return "mn.ineg.model.MStaffStatus[ id=" + id + " ]";
     }
     
 }

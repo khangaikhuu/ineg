@@ -29,9 +29,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "m_work_condition")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "MWorkCondition.findAll", query = "SELECT m FROM MWorkCondition m"),
-    @NamedQuery(name = "MWorkCondition.findById", query = "SELECT m FROM MWorkCondition m WHERE m.id = :id"),
-    @NamedQuery(name = "MWorkCondition.findByName", query = "SELECT m FROM MWorkCondition m WHERE m.name = :name")})
+    @NamedQuery(name = "MWorkCondition.findAll", query = "SELECT m FROM MWorkCondition m")})
 public class MWorkCondition implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -100,7 +98,7 @@ public class MWorkCondition implements Serializable {
 
     @Override
     public String toString() {
-        return "mn.ineg.MWorkCondition[ id=" + id + " ]";
+        return "mn.ineg.model.MWorkCondition[ id=" + id + " ]";
     }
     
 }

@@ -29,9 +29,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "m_gender")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "MGender.findAll", query = "SELECT m FROM MGender m"),
-    @NamedQuery(name = "MGender.findById", query = "SELECT m FROM MGender m WHERE m.id = :id"),
-    @NamedQuery(name = "MGender.findByName", query = "SELECT m FROM MGender m WHERE m.name = :name")})
+    @NamedQuery(name = "MGender.findAll", query = "SELECT m FROM MGender m")})
 public class MGender implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -100,7 +98,7 @@ public class MGender implements Serializable {
 
     @Override
     public String toString() {
-        return "mn.ineg.MGender[ id=" + id + " ]";
+        return "mn.ineg.model.MGender[ id=" + id + " ]";
     }
     
 }

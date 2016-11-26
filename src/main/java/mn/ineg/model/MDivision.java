@@ -5,8 +5,6 @@
  */
 package mn.ineg.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
@@ -31,10 +29,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "m_division")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "MDivision.findAll", query = "SELECT m FROM MDivision m"),
-    @NamedQuery(name = "MDivision.findById", query = "SELECT m FROM MDivision m WHERE m.id = :id"),
-    @NamedQuery(name = "MDivision.findByName", query = "SELECT m FROM MDivision m WHERE m.name = :name"),
-    @NamedQuery(name = "MDivision.findByVacancy", query = "SELECT m FROM MDivision m WHERE m.vacancy = :vacancy")})
+    @NamedQuery(name = "MDivision.findAll", query = "SELECT m FROM MDivision m")})
 public class MDivision implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -48,8 +43,6 @@ public class MDivision implements Serializable {
     private String name;
     @Column(name = "vacancy")
     private Integer vacancy;
-    @OneToMany(mappedBy = "divisionId")
-    private List<MDivisionContent> mDivisionContentList;
     @OneToMany(mappedBy = "divisionId")
     private List<MStaff> mStaffList;
 
@@ -85,17 +78,6 @@ public class MDivision implements Serializable {
     }
 
     @XmlTransient
-    @JsonProperty("contentList")
-    public List<MDivisionContent> getMDivisionContentList() {
-        return mDivisionContentList;
-    }
-
-    public void setMDivisionContentList(List<MDivisionContent> mDivisionContentList) {
-        this.mDivisionContentList = mDivisionContentList;
-    }
-
-    @XmlTransient
-    @JsonIgnore
     public List<MStaff> getMStaffList() {
         return mStaffList;
     }
@@ -126,7 +108,7 @@ public class MDivision implements Serializable {
 
     @Override
     public String toString() {
-        return "mn.ineg.MDivision[ id=" + id + " ]";
+        return "mn.ineg.model.MDivision[ id=" + id + " ]";
     }
     
 }

@@ -3,15 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mn.ineg.controller;
+package mn.ineg.service;
 
-import org.springframework.stereotype.Controller;
+import mn.ineg.model.MStaff;
+import org.springframework.data.repository.PagingAndSortingRepository;
 
 /**
  *
  * @author developer
  */
-@Controller
-public class NewsCategoryController {
+public interface StaffRestRepository extends PagingAndSortingRepository<MStaff, Integer>{
     
 }

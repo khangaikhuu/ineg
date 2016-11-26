@@ -29,9 +29,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "m_skill_category")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "MSkillCategory.findAll", query = "SELECT m FROM MSkillCategory m"),
-    @NamedQuery(name = "MSkillCategory.findById", query = "SELECT m FROM MSkillCategory m WHERE m.id = :id"),
-    @NamedQuery(name = "MSkillCategory.findByName", query = "SELECT m FROM MSkillCategory m WHERE m.name = :name")})
+    @NamedQuery(name = "MSkillCategory.findAll", query = "SELECT m FROM MSkillCategory m")})
 public class MSkillCategory implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -100,7 +98,7 @@ public class MSkillCategory implements Serializable {
 
     @Override
     public String toString() {
-        return "mn.ineg.MSkillCategory[ id=" + id + " ]";
+        return "mn.ineg.model.MSkillCategory[ id=" + id + " ]";
     }
     
 }

@@ -34,26 +34,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "m_staff")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "MStaff.findAll", query = "SELECT m FROM MStaff m"),
-    @NamedQuery(name = "MStaff.findById", query = "SELECT m FROM MStaff m WHERE m.id = :id"),
-    @NamedQuery(name = "MStaff.findByProfileImage", query = "SELECT m FROM MStaff m WHERE m.profileImage = :profileImage"),
-    @NamedQuery(name = "MStaff.findByFamilyName", query = "SELECT m FROM MStaff m WHERE m.familyName = :familyName"),
-    @NamedQuery(name = "MStaff.findByLastname", query = "SELECT m FROM MStaff m WHERE m.lastname = :lastname"),
-    @NamedQuery(name = "MStaff.findByFirstname", query = "SELECT m FROM MStaff m WHERE m.firstname = :firstname"),
-    @NamedQuery(name = "MStaff.findByRegisterno", query = "SELECT m FROM MStaff m WHERE m.registerno = :registerno"),
-    @NamedQuery(name = "MStaff.findByDob", query = "SELECT m FROM MStaff m WHERE m.dob = :dob"),
-    @NamedQuery(name = "MStaff.findByAddress", query = "SELECT m FROM MStaff m WHERE m.address = :address"),
-    @NamedQuery(name = "MStaff.findByPhoneNo1", query = "SELECT m FROM MStaff m WHERE m.phoneNo1 = :phoneNo1"),
-    @NamedQuery(name = "MStaff.findByPhoneNo2", query = "SELECT m FROM MStaff m WHERE m.phoneNo2 = :phoneNo2"),
-    @NamedQuery(name = "MStaff.findByEmail", query = "SELECT m FROM MStaff m WHERE m.email = :email"),
-    @NamedQuery(name = "MStaff.findByPassword", query = "SELECT m FROM MStaff m WHERE m.password = :password"),
-    @NamedQuery(name = "MStaff.findByOccCertNo", query = "SELECT m FROM MStaff m WHERE m.occCertNo = :occCertNo"),
-    @NamedQuery(name = "MStaff.findByOccCertDate", query = "SELECT m FROM MStaff m WHERE m.occCertDate = :occCertDate"),
-    @NamedQuery(name = "MStaff.findByHealthCertNo", query = "SELECT m FROM MStaff m WHERE m.healthCertNo = :healthCertNo"),
-    @NamedQuery(name = "MStaff.findByHealthCertDate", query = "SELECT m FROM MStaff m WHERE m.healthCertDate = :healthCertDate"),
-    @NamedQuery(name = "MStaff.findByEngLevelDate", query = "SELECT m FROM MStaff m WHERE m.engLevelDate = :engLevelDate"),
-    @NamedQuery(name = "MStaff.findBySafetyClothSdate", query = "SELECT m FROM MStaff m WHERE m.safetyClothSdate = :safetyClothSdate"),
-    @NamedQuery(name = "MStaff.findBySafetyClothEdate", query = "SELECT m FROM MStaff m WHERE m.safetyClothEdate = :safetyClothEdate")})
+    @NamedQuery(name = "MStaff.findAll", query = "SELECT m FROM MStaff m")})
 public class MStaff implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -117,10 +98,6 @@ public class MStaff implements Serializable {
     @Column(name = "safety_cloth_edate")
     @Temporal(TemporalType.DATE)
     private Date safetyClothEdate;
-    @OneToMany(mappedBy = "userId")
-    private List<MNews> mNewsList;
-    @OneToMany(mappedBy = "userId")
-    private List<UserScore> userScoreList;
     @JoinColumn(name = "work_condition_id", referencedColumnName = "id")
     @ManyToOne
     private MWorkCondition workConditionId;
@@ -145,6 +122,8 @@ public class MStaff implements Serializable {
     @JoinColumn(name = "status_id", referencedColumnName = "id")
     @ManyToOne
     private MStaffStatus statusId;
+    @OneToMany(mappedBy = "userId")
+    private List<MNews> mNewsList;
 
     public MStaff() {
     }
@@ -305,24 +284,6 @@ public class MStaff implements Serializable {
         this.safetyClothEdate = safetyClothEdate;
     }
 
-    @XmlTransient
-    public List<MNews> getMNewsList() {
-        return mNewsList;
-    }
-
-    public void setMNewsList(List<MNews> mNewsList) {
-        this.mNewsList = mNewsList;
-    }
-
-    @XmlTransient
-    public List<UserScore> getUserScoreList() {
-        return userScoreList;
-    }
-
-    public void setUserScoreList(List<UserScore> userScoreList) {
-        this.userScoreList = userScoreList;
-    }
-
     public MWorkCondition getWorkConditionId() {
         return workConditionId;
     }
@@ -387,6 +348,15 @@ public class MStaff implements Serializable {
         this.statusId = statusId;
     }
 
+    @XmlTransient
+    public List<MNews> getMNewsList() {
+        return mNewsList;
+    }
+
+    public void setMNewsList(List<MNews> mNewsList) {
+        this.mNewsList = mNewsList;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -409,7 +379,7 @@ public class MStaff implements Serializable {
 
     @Override
     public String toString() {
-        return "mn.ineg.MStaff[ id=" + id + " ]";
+        return "mn.ineg.model.MStaff[ id=" + id + " ]";
     }
     
 }

@@ -289,26 +289,26 @@ License: You must have a valid license purchased only from themeforest(the above
                             </a>
                             <ul class="sub-menu">
                                 <li class="nav-item start active open">
-                                    <a href="index_thym.html" class="nav-link ">
+                                    <a href="/news/list" class="nav-link ">
                                         <i class="icon-bar-chart"></i>
                                         <span class="title">Шинэ мэдээ </span>
                                         <span class="badge badge-success">1</span>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/divisions/technology" class="nav-link">
+                                    <a href="/news/new" class="nav-link">
                                         <i class="icon-power"></i>  Мэдээ оруулах </a>    
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/divisions/search" class="nav-link">
+                                    <a href="/news/list" class="nav-link">
                                         <i class="icon-power"></i>  Мэдээний архив </a>   
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/divisions/technology" class="nav-link">
+                                    <a href="/flight/list" class="nav-link">
                                         <i class="icon-power"></i>  Нислэгийн Хуваарь </a>    
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/divisions/technology" class="nav-link">
+                                    <a href="/flight/new" class="nav-link">
                                         <i class="icon-power"></i>  Нислэгийн Хуваарь оруулах</a>    
                                 </li>                          
                             </ul>
@@ -1254,6 +1254,18 @@ License: You must have a valid license purchased only from themeforest(the above
             $('.datepicker').datepicker({
                 format: 'yyyy-mm-dd'
             });
+            
+        </script>
+        <script>
+            $('.timepicker').timepicker({
+                minuteStep: 1,
+                template: 'modal',
+                appendWidgetTo: 'body',
+                showSeconds: false,
+                showMeridian: false,
+                defaultTime: true
+            });
+            
         </script>
     </body>
 

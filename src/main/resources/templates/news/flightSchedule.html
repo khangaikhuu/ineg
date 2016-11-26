@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" data-layout-decorator="layouts/default-layout">
+    <head>
+        <title>Flight Schedule</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    </head>
+    <body>
+        <div class="page-content-wrapper" data-layout-fragment="content">
+
+            <!-- BEGIN CONTENT BODY -->
+            <div class="page-content">
+                <!-- BEGIN PAGE HEADER-->
+
+                <!-- BEGIN PAGE BAR -->
+                <div class="page-bar">
+                    <ul class="page-breadcrumb">
+                        <li>
+                            <a href="/">Мэдээ, мэдээлэл</a>
+                            <i class="fa fa-circle"></i>
+                        </li>
+                        <li>
+                            <a href="#">Нислэгийн хуваарь</a>
+                            <i class="fa fa-circle"></i>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END PAGE BAR -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- BEGIN SAMPLE TABLE PORTLET-->
+                        <div class="portlet box blue">
+                            <div class="portlet-title">
+                                <div class="caption">
+                                    <i class="fa fa-comments"></i>Нислэгийн хуваарь </div>
+                                <div class="actions">
+                                    <a class="btn grey-salsa btn-sm active" href="/flight/new" > Нислэгийн хуваарь нэмэх
+                                        <i class="fa fa-plus"></i>
+                                    </a>
+                                </div>
+
+                            </div>
+                            <div class="portlet-body">
+                                <div class="table-scrollable">
+                                    <table class="table table-striped table-bordered table-advance table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    <i class="fa fa-user"></i> Нисэн гарах 
+                                                </th>
+                                                <th>
+                                                    <i class="fa fa-user"></i> Нисэн буух 
+                                                </th>
+                                                <th>
+                                                    <i class="fa fa-user"></i> Аялалын дугаар 
+                                                </th>
+                                                <th>
+                                                    <i class="fa fa-user"></i> Тээвэрлэгч 
+                                                </th>
+                                                <th>
+                                                    <i class="fa fa-user"></i> Хөөрөх цаг 
+                                                </th>
+                                                <th>
+                                                    <i class="fa fa-user"></i> Буух цаг 
+                                                </th>
+                                                <th>  
+                                                    <i class="fa fa-file"></i> Эхлэх өдөр 
+                                                </th>
+                                                <th>
+                                                    <i class="fa fa-user"></i> Дуусах өдөр 
+                                                </th>
+                                                </th>
+                                                <th> 
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr th:each="schedule : ${schedules}">
+                                                <td th:text="${schedule.departure}">
+                                                    <div class="success"></div>
+                                                    <a href="javascript:;">  </a>
+                                                </td>
+                                                <td th:text="${schedule.destination}"> 
+                                                </td>
+                                                <td th:text="${schedule.tripNumber}"> 
+                                                </td>
+                                                <td th:text="${schedule.flightCompany}"> 
+                                                </td>
+                                                <td th:text="${schedule.timeDeparture}"> 
+                                                </td>
+                                                <td th:text="${schedule.timeDestination}"> 
+                                                </td>
+                                                <td th:text="${schedule.dateBegin}"> 
+                                                </td>
+                                                <td th:text="${schedule.dateEnd}"> 
+                                                </td>
+                                                <td>
+                                                    <a href="#" data-th-href="${'/flight/edit/' + schedule.id}" 
+                                                       class="btn btn-outline btn-circle btn-sm purple">
+                                                        <i class="fa fa-edit"></i> Засах </a>
+                                                </td>
+                                                <td>
+                                                    <a th:href="${'/flight/delete/' + schedule.id}" class="btn btn-outline btn-circle btn-sm purple">
+                                                        <i class="fa fa-remove"></i> Устгах </a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END SAMPLE TABLE PORTLET-->
+                    </div>
+                </div>
+                <div>
+
+                </div>
+            </div>
+            <!-- END CONTENT BODY -->
+        </div>
+    </body>
+</html>
+
