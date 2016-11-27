@@ -1,10 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" data-layout-decorator="layouts/default-layout">
     <head>
-        <title>Засгийн Газрын тушаалын төрөл нэмэх</title>
-        <!-- BEGIN PAGE LEVEL PLUGINS -->
-
-        <!-- END PAGE LEVEL PLUGINS -->
+        <title>Засгийн Газрын тушаалын засах</title>
     </head>
     <body>
         <div class="page-content-wrapper" data-layout-fragment="content">
@@ -21,10 +18,10 @@
                             <i class="fa fa-circle"></i>
                         </li>
                         <li>
-                            <a href="#">Тушаалын төрөл нэмэх</a>
+                            <a href="#">Тушаалын төрөл засах</a>
                             <i class="fa fa-circle"></i>
                         </li>
-                        
+
                     </ul>
                 </div>
                 <div class="row">
@@ -32,7 +29,7 @@
                         <div class="portlet box blue">
                             <div class="portlet-title">
                                 <div class="caption">
-                                    <i class="fa fa-legal"></i> Засгийн Газрын тушаалын төрөл нэмэх </div>
+                                    <i class="fa fa-legal"></i> Засгийн Газрын тушаалын төрөл засах </div>
                                 <div class="tools">
                                     <a href="" class="collapse"> </a>
                                     <a href="" class="reload"> </a>
@@ -40,15 +37,26 @@
                             </div>
                             <div class="portlet-body form">
                                 <!--<form  action="" id="bForm" class="form-horizontal" data-th-object="${law}" data-th-action="@{/law/add}" method="post">-->
-                                <form  action="#" th:action="@{/regtype/government/save}" th:object="${typeGov}" id="addForm" name="addForm" class="form-horizontal"  method="post" role="form">
+                                <form  action="#" th:action="@{/docrules/saveEdit}" th:object="${doctypetypes}" id="addForm" name="addForm" class="form-horizontal"  method="post" role="form">
                                     <div class="form-body">
                                         <div class="form-group">
-                                            <label class="col-sm-2 control-label">Хуулийн Төрлийн Нэр</label>
+                                            <input type="hidden"  name="doc_type_type_id" th:value="*{id}"/>
+                                            <label class="col-sm-2 control-label">Тушаал Шийдвэр Нэр</label>
                                             <div class="col-sm-6">
-                                                <input type="text" class="form-control" name="govTypeName" th:value="*{name}"/>
+                                                <input type="text" class="form-control" name="doc_type_name" th:value="*{name}"/>
                                             </div>
                                         </div>
-                                        
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">Хуулийн төрөл сонгох </label>
+                                            <div class="col-sm-6">
+                                                <select name="doc_type_id" th:value="*{docTypeId}">
+                                                    <option th:each="doctype, docStat : ${doctypes}"
+                                                            th:value="${doctype.id}"
+                                                            th:text="${doctype.name}">
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
                                         <div class="form-actions">
                                             <button type="submit" name="action" value="save"  class="btn btn-green">Хадгалах</button>
                                             <button type="submit" name="action" value="cancel" class="btn btn-default">Цуцлах</button>

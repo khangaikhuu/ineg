@@ -15,29 +15,25 @@
                 <div class="page-bar">
                     <ul class="page-breadcrumb">
                         <li>
-                            <a href="/">Нүүр</a>
+                            <a href="/">Тушаал Шийдвэр</a>
                             <i class="fa fa-circle"></i>
                         </li>
                         <li>
-                            <a href="#">Tables</a>
+                            <a href="#">Тушаал Шийдвэрийн жагсаалт</a>
                             <i class="fa fa-circle"></i>
-                        </li>
-                        <li>
-                            <span>Static Tables</span>
                         </li>
                     </ul>
                 </div>
                 <!-- END PAGE BAR -->
                 <!-- BEGIN SAMPLE TABLE PORTLET-->
-                <div class="portlet">
+                <div class="portlet box blue">
                     <div class="portlet-title">
                         <div class="caption">
                             <i class="fa fa-bell-o"></i>Хэсгүүд</div>
-                        <div class="tools">
-                            <a href="javascript:;" class="collapse"> </a>
-                            <a href="#portlet-config" data-toggle="modal" class="config"> </a>
-                            <a href="javascript:;" class="reload"> </a>
-                            <a href="javascript:;" class="remove"> </a>
+                        <div class="actions">
+                            <a class="btn grey-salsa btn-sm active" href="/docrules/new" > Шийдвэрийн төрөл нэмэх
+                                <i class="fa fa-plus"></i>
+                            </a>
                         </div>
                     </div>
 
@@ -47,10 +43,10 @@
                                 <thead>
                                     <tr>
                                         <th>
-                                            <i class="fa fa-briefcase"></i> Дугаар
+                                            <i class="fa fa-briefcase"></i> Төрлийн ангиллын нэр
                                         </th>
                                         <th>
-                                            <i class="fa fa-briefcase"></i> Засгийн Газрын Захирамжийн Нэр 
+                                            <i class="fa fa-briefcase"></i> Төрлийн ангиллын дээд
                                         </th>
                                         <th class="hidden-xs">
                                             <i class="fa fa-user"></i> Засах </th>
@@ -59,20 +55,17 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr th:each=" type : ${govtypes}">
-                                        <td th:text="${type.id}">
-                                            <div class="success"></div>
-                                            <a href="javascript:;">  </a>
+                                    <tr th:each=" type : ${doctypetypes}">
+                                        <td th:text="${type.name}"> 
                                         </td>
-                                        <td th:text="${type.name}">
-                                            
+                                        <td th:text="${type.docTypeId.name}"> 
                                         </td>
                                         <td>
-                                            <a th:href="${'/regtype/government/edit/' + type.id}" class="btn btn-outline btn-circle btn-sm purple">
+                                            <a th:href="${'/docrules/edit/' + type.id}" class="btn btn-outline btn-circle btn-sm purple">
                                                 <i class="fa fa-edit"></i> Засах </a>
                                         </td>
                                         <td>
-                                            <a th:href="${'/regtype/government/delete/' + type.id}" class="btn btn-outline btn-circle btn-sm purple">
+                                            <a th:href="${'/docrules/delete/' + type.id}" class="btn btn-outline btn-circle btn-sm purple">
                                                 <i class="fa fa-remove"></i> Устгах </a>
                                         </td>
                                     </tr>

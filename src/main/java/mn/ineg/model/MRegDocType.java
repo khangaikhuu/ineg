@@ -5,7 +5,6 @@
  */
 package mn.ineg.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
@@ -29,11 +28,6 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "m_reg_doc_type")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "MRegDocType.findAll", query = "SELECT m FROM MRegDocType m"),
-    @NamedQuery(name = "MRegDocType.findById", query = "SELECT m FROM MRegDocType m WHERE m.id = :id"),
-    @NamedQuery(name = "MRegDocType.findByName", query = "SELECT m FROM MRegDocType m WHERE m.name = :name")})
 public class MRegDocType implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -79,7 +73,6 @@ public class MRegDocType implements Serializable {
     }
 
     @XmlTransient
-    @JsonProperty("contentList")
     public List<MRegDocTypeTypes> getMRegDocTypeTypesList() {
         return mRegDocTypeTypesList;
     }
@@ -110,7 +103,7 @@ public class MRegDocType implements Serializable {
 
     @Override
     public String toString() {
-        return "mn.ineg.MRegDocType[ id=" + id + " ]";
+        return "mn.ineg.model.MRegDocType[ id=" + id + " ]";
     }
     
 }

@@ -5,7 +5,7 @@
  */
 package mn.ineg.service;
 
-import mn.ineg.model.MRegDocType;
+import mn.ineg.model.MnRegDocInegDetails;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
@@ -13,7 +13,7 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
  *
  * @author developer
  */
-@RepositoryRestResource(collectionResourceRel = "data", path = "rules")
-public interface RegulationsRestRepository extends PagingAndSortingRepository<MRegDocType, Integer>{
+@RepositoryRestResource(collectionResourceRel = "data", path = "regulationdoc")
+public interface RegulationDocInegRestRepository extends PagingAndSortingRepository<MnRegDocInegDetails, Integer>{
     
 }

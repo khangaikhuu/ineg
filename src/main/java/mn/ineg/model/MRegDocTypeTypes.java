@@ -30,11 +30,6 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "m_reg_doc_type_types")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "MRegDocTypeTypes.findAll", query = "SELECT m FROM MRegDocTypeTypes m"),
-    @NamedQuery(name = "MRegDocTypeTypes.findById", query = "SELECT m FROM MRegDocTypeTypes m WHERE m.id = :id"),
-    @NamedQuery(name = "MRegDocTypeTypes.findByName", query = "SELECT m FROM MRegDocTypeTypes m WHERE m.name = :name")})
 public class MRegDocTypeTypes implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -49,14 +44,10 @@ public class MRegDocTypeTypes implements Serializable {
     @Column(name = "name")
     private String name;
     @OneToMany(mappedBy = "docTypeId")
-    private List<MRegDocGovDetails> mRegDocGovDetailsList;
+    private List<MnRegDocInegDetails> mnRegDocInegDetailsList;
     @JoinColumn(name = "doc_type_id", referencedColumnName = "id")
     @ManyToOne
     private MRegDocType docTypeId;
-    @OneToMany(mappedBy = "docTypeId")
-    private List<MRegDocRoadDetails> mRegDocRoadDetailsList;
-    @OneToMany(mappedBy = "docTypeId")
-    private List<MnRegDocInegDetails> mnRegDocInegDetailsList;
 
     public MRegDocTypeTypes() {
     }
@@ -87,12 +78,12 @@ public class MRegDocTypeTypes implements Serializable {
     }
 
     @XmlTransient
-    public List<MRegDocGovDetails> getMRegDocGovDetailsList() {
-        return mRegDocGovDetailsList;
+    public List<MnRegDocInegDetails> getMnRegDocInegDetailsList() {
+        return mnRegDocInegDetailsList;
     }
 
-    public void setMRegDocGovDetailsList(List<MRegDocGovDetails> mRegDocGovDetailsList) {
-        this.mRegDocGovDetailsList = mRegDocGovDetailsList;
+    public void setMnRegDocInegDetailsList(List<MnRegDocInegDetails> mnRegDocInegDetailsList) {
+        this.mnRegDocInegDetailsList = mnRegDocInegDetailsList;
     }
 
     public MRegDocType getDocTypeId() {
@@ -101,24 +92,6 @@ public class MRegDocTypeTypes implements Serializable {
 
     public void setDocTypeId(MRegDocType docTypeId) {
         this.docTypeId = docTypeId;
-    }
-
-    @XmlTransient
-    public List<MRegDocRoadDetails> getMRegDocRoadDetailsList() {
-        return mRegDocRoadDetailsList;
-    }
-
-    public void setMRegDocRoadDetailsList(List<MRegDocRoadDetails> mRegDocRoadDetailsList) {
-        this.mRegDocRoadDetailsList = mRegDocRoadDetailsList;
-    }
-
-    @XmlTransient
-    public List<MnRegDocInegDetails> getMnRegDocInegDetailsList() {
-        return mnRegDocInegDetailsList;
-    }
-
-    public void setMnRegDocInegDetailsList(List<MnRegDocInegDetails> mnRegDocInegDetailsList) {
-        this.mnRegDocInegDetailsList = mnRegDocInegDetailsList;
     }
 
     @Override
@@ -143,7 +116,7 @@ public class MRegDocTypeTypes implements Serializable {
 
     @Override
     public String toString() {
-        return "mn.ineg.MRegDocTypeTypes[ id=" + id + " ]";
+        return "mn.ineg.model.MRegDocTypeTypes[ id=" + id + " ]";
     }
     
 }

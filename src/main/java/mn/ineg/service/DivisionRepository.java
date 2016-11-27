@@ -14,7 +14,6 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
  * @author developer
  */
 @RepositoryRestResource(collectionResourceRel = "data", path = "divisionrepo")
-
 public interface DivisionRepository extends PagingAndSortingRepository<MDivision, Integer> {
     
 }

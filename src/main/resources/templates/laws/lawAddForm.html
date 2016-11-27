@@ -29,7 +29,7 @@
                         </li>
                     </ul>
                 </div>
-               
+
                 <div class="row">
                     <div class="col-md-10">
                         <div class="portlet box blue">
@@ -43,43 +43,51 @@
                             </div>
                             <div class="portlet-body form">
                                 <!--<form  action="" id="bForm" class="form-horizontal" data-th-object="${law}" data-th-action="@{/law/add}" method="post">-->
-                                <form  action="#" th:action="@{/law/saveNew}" th:object="${lawTypes}" id="addForm" name="addForm" class="form-horizontal"  method="post" role="form">
+                                <form  action="#" th:action="@{/law/saveNew}" th:object="${law}" id="addForm" name="addForm" class="form-horizontal"  
+                                       method="post" role="form" enctype=multipart/form-data">
                                     <div class="form-body">
-                                        <input type="hidden" name="law_id" th:value="${law.lawId}"/>
-                                        <input type="hidden" name="law_created_at" th:value="${law.createdAt}" />
-                                        <input type="hidden" name="law_created_by" th:value="${law.createdBy}" />
+                                        <!--<input type="hidden" name="law_id" th:value="${law.lawId}"/>-->
+                                        <input type="hidden" name="law_created_at" th:value="*{createdAt}" />
+                                        <input type="hidden" name="law_created_by" th:value="*{createdBy}" />
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label"> Нэр</label>
                                             <div class="col-sm-6">
-                                                <input type="text" class="form-control" name="law_name" th:value="${law.lawName}" />
+                                                <input type="text" class="form-control" name="law_name" th:value="*{lawName}" />
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Батлагдсан</label>
                                             <div class="col-sm-6">
-                                                <input type="text" class="form-control datepicker" name="law_approved_year" th:value="${law.approvedYear}"/>
+                                                <input type="text" class="form-control datepicker" name="law_approved_year" th:value="*{approvedYear}"/>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Өөрчлөгдсөн</label>
                                             <div class="col-sm-6">
                                                 <input type="text" class="form-control datepicker"
-                                                       name="law_changed_year" th:value="${law.changedYear}" />
+                                                       name="law_changed_year" th:value="*{changedYear}" />
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Файл</label>
                                             <div class="col-sm-6">
-                                                <input type="text" class="form-control" name="law_path" th:value="${law.path}"/>
+                                                <!--                                                <input type="text" class="form-control" name="law_path" th:value="${law.path}"/>-->
+                                                <input type="file" class="form-control" name="file" id="file" />
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Хуулийн төрөл сонгох </label>
                                             <div class="col-sm-6">
-                                                <select id="law_type_id" name="law_type_id" th:value="${lawTypes}">
-                                                    <option data-th-each="lawType : ${lawTypes}" 
-                                                            data-the-value ="${lawType.id}"
-                                                            data-th-text="${lawType.name}">
+                                                <!--                                                <select id="law_type_id" name="law_type_id" th:value="${lawTypes}">
+                                                                                                    <option data-th-each="lawType : ${lawTypes}" 
+                                                                                                            data-the-value ="${lawType.id}"
+                                                                                                            data-th-text="${lawType.name}">
+                                                                                                    </option>
+                                                                                                </select>-->
+                                                <select name="law_type_id" th:value="*{lawTypeId}">
+                                                    <option th:each="lawtype, lawStat : ${lawTypes}"
+                                                            th:value="${lawtype.id}"
+                                                            th:text="${lawtype.name}">
                                                     </option>
                                                 </select>
                                             </div>

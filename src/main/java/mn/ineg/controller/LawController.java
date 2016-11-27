@@ -35,6 +35,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import mn.ineg.main.Common;
 
 /**
  *
@@ -123,13 +124,12 @@ public class LawController {
     public ModelAndView createLawPage() {
         System.out.println("Entering in to new method");
         ModelAndView modelAndView = new ModelAndView("laws/lawAddForm");
-        Iterable<MLawType> lawTypeObject = lawTypeRepository.findAll();
         Iterable<MLaw> lawObjects = lawCrudRepository.findAll();
         Long size = lawObjects.spliterator().getExactSizeIfKnown();
         MLaw mLaw = new MLaw();
         mLaw.setLawId(size.intValue());
         modelAndView.addObject("law", mLaw);
-        modelAndView.addObject("lawTypes", lawTypeObject);
+        modelAndView.addObject("lawTypes", lawTypeRepository.findAll());
         return modelAndView;
     }
 
@@ -140,32 +140,40 @@ public class LawController {
      * @return
      */
     @RequestMapping(value = "/saveNew", method = RequestMethod.POST)
-    public String saveLaw(@ModelAttribute("addForm") MLaw law,
-            HttpServletRequest request) throws ParseException {
-        System.out.println("MLaw Object " + law.getLawId());
-        System.out.println("Requests " + request.getParameterMap());
-        System.out.println("1 : " + request.getParameter("law_type_id"));
-        System.out.println("2 : " + request.getParameter("law_approved_year"));
-        System.out.println("3 : " + request.getParameter("law_changed_year"));
-        System.out.println("4 : " + request.getParameter("law_created_at"));
-        System.out.println("5 : " + request.getParameter("law_name"));
-        System.out.println("6 : " + request.getParameter("law_path"));
-        System.out.println("7 : " + request.getParameter("law_created_by"));
-        System.out.println("8 : " + request.getParameter("law_type_id"));
+    public String saveLaw(
+            @RequestParam("law_name") String law_name,
+            @RequestParam("law_approved_year") String law_approved_year,
+            @RequestParam("law_changed_year") String law_changed_year,
+            @RequestParam("action") String action_parameter,
+            //            @RequestParam("law_path") String law_path,
+            @RequestParam("law_type_id") String law_type_id_name,
+            @RequestParam("file") MultipartFile file,
+            HttpServletRequest request) throws ParseException, IOException {
 
         String action = "save";
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd");
         Date date;
-
+        System.out.println("File : " + file.getName());
+        String rootFolder = Common.ROOT_FOLDER;
+        String uploadDir = "/internallaw";
+        String filePath = rootFolder + uploadDir;
+        String uploadFileName = "law" + UUID.randomUUID().toString() + ".pdf";
+        String law_file_path = uploadDir + "/" + uploadFileName;
+        File destination = new File(filePath, uploadFileName);
+        if (!file.isEmpty()) {
+            file.transferTo(destination);
+        }
         if (action.equals("save")) {
             MLaw mLaw = new MLaw();
             mLaw.setLawName(request.getParameter("law_name"));
-            MLawType mlawtype = lawTypeRepository.findOne(1);
+            MLawType mlawtype = lawTypeRepository.findOne(Integer.parseInt(law_type_id_name));
             date = formatter.parse(request.getParameter("law_approved_year"));
             mLaw.setApprovedYear(date);
             date = formatter.parse(request.getParameter("law_changed_year"));
             mLaw.setChangedYear(date);
-            mLaw.setPath(request.getParameter("path"));
+            mLaw.setCreatedAt(new Date());
+            mLaw.setCreatedBy(1);
+            mLaw.setPath(law_file_path);
             mLaw.setLawTypeId(mlawtype);
             lawCrudRepository.save(mLaw);
         }
@@ -221,9 +229,6 @@ public class LawController {
         String uploadFileName = "law" + UUID.randomUUID().toString() + ".pdf";
         String law_file_path = uploadDir + "/" + uploadFileName;
         File destination = new File(filePath, uploadFileName);
-        String fileName = file.getOriginalFilename();
-        System.out.println("File Content " + file.getContentType());
-        System.out.println("File Name " + fileName);
         if (!file.isEmpty()) {
             file.transferTo(destination);
         }
@@ -240,8 +245,7 @@ public class LawController {
             mlaw.setApprovedYear(date);
             date = formatter.parse(law_changed_year);
             mlaw.setChangedYear(date);
-            Date createdDate = new Date();
-            mlaw.setCreatedAt(createdDate);
+            mlaw.setCreatedAt(new Date());
             mlaw.setCreatedBy(1);
             mlaw.setPath(law_file_path);
             mlaw.setLawTypeId(mlawtype);

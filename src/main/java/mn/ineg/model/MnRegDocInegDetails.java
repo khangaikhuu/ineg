@@ -16,14 +16,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -31,14 +28,6 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "mn_reg_doc_ineg_details")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "MnRegDocInegDetails.findAll", query = "SELECT m FROM MnRegDocInegDetails m"),
-    @NamedQuery(name = "MnRegDocInegDetails.findById", query = "SELECT m FROM MnRegDocInegDetails m WHERE m.id = :id"),
-    @NamedQuery(name = "MnRegDocInegDetails.findByRegNumber", query = "SELECT m FROM MnRegDocInegDetails m WHERE m.regNumber = :regNumber"),
-    @NamedQuery(name = "MnRegDocInegDetails.findByRegApprovedYear", query = "SELECT m FROM MnRegDocInegDetails m WHERE m.regApprovedYear = :regApprovedYear"),
-    @NamedQuery(name = "MnRegDocInegDetails.findByRegDoneBy", query = "SELECT m FROM MnRegDocInegDetails m WHERE m.regDoneBy = :regDoneBy"),
-    @NamedQuery(name = "MnRegDocInegDetails.findByRegCreatedBy", query = "SELECT m FROM MnRegDocInegDetails m WHERE m.regCreatedBy = :regCreatedBy")})
 public class MnRegDocInegDetails implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -57,19 +46,13 @@ public class MnRegDocInegDetails implements Serializable {
     @Size(min = 1, max = 65535)
     @Column(name = "reg_content")
     private String regContent;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "reg_approved_year")
     @Temporal(TemporalType.TIMESTAMP)
     private Date regApprovedYear;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 300)
+    @Size(max = 300)
     @Column(name = "reg_done_by")
     private String regDoneBy;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 300)
+    @Size(max = 300)
     @Column(name = "reg_created_by")
     private String regCreatedBy;
     @JoinColumn(name = "doc_type_id", referencedColumnName = "id")
@@ -83,13 +66,10 @@ public class MnRegDocInegDetails implements Serializable {
         this.id = id;
     }
 
-    public MnRegDocInegDetails(Integer id, int regNumber, String regContent, Date regApprovedYear, String regDoneBy, String regCreatedBy) {
+    public MnRegDocInegDetails(Integer id, int regNumber, String regContent) {
         this.id = id;
         this.regNumber = regNumber;
         this.regContent = regContent;
-        this.regApprovedYear = regApprovedYear;
-        this.regDoneBy = regDoneBy;
-        this.regCreatedBy = regCreatedBy;
     }
 
     public Integer getId() {
@@ -170,7 +150,7 @@ public class MnRegDocInegDetails implements Serializable {
 
     @Override
     public String toString() {
-        return "mn.ineg.MnRegDocInegDetails[ id=" + id + " ]";
+        return "mn.ineg.model.MnRegDocInegDetails[ id=" + id + " ]";
     }
     
 }

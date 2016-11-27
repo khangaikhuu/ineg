@@ -70,7 +70,11 @@
                                                 </td>
                                                 <td th:text="${law.approvedYear}"></td>
                                                 <td th:text="${law.changedYear}"></td>
-                                                <td th:text="${law.path}"></td>
+                                                <td>
+                                                    <a th:href ="${'/download' + law.path}">
+                                                        <i class="fa fa-download"></i>
+                                                    </a>
+                                                </td>
                                                 <td>
                                                     <a href="#" data-th-href="${'/law/edit/' + law.lawId}" class="btn btn-outline btn-circle btn-sm purple">
                                                         <i class="fa fa-edit"></i> Засах </a>

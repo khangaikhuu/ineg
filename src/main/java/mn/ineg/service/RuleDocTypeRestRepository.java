@@ -5,7 +5,7 @@
  */
 package mn.ineg.service;
 
-import mn.ineg.model.MFlightSchedule;
+import mn.ineg.model.MRegDocType;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
@@ -13,7 +13,7 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
  *
  * @author developer
  */
-@RepositoryRestResource(collectionResourceRel = "data", path = "flightschedule")
-public interface FlightSchedulerRestRepository extends PagingAndSortingRepository<MFlightSchedule, Integer>{
+@RepositoryRestResource(collectionResourceRel = "data", path = "regdoctype")
+public interface RuleDocTypeRestRepository extends PagingAndSortingRepository<MRegDocType, Integer>{
     
 }

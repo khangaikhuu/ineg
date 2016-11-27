@@ -3,13 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mn.ineg.service;
+package mn.ineg.main;
 
 /**
  *
  * @author developer
  */
-
-public interface RegulationsRepository {
-    
+public class Common {
+    public static final String ROOT_FOLDER = "/Users/developer/uploadingdir";
 }
