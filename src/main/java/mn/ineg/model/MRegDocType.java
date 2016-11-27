@@ -5,6 +5,7 @@
  */
 package mn.ineg.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
@@ -73,6 +74,7 @@ public class MRegDocType implements Serializable {
     }
 
     @XmlTransient
+    @JsonProperty("contentList")
     public List<MRegDocTypeTypes> getMRegDocTypeTypesList() {
         return mRegDocTypeTypesList;
     }
