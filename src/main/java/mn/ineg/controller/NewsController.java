@@ -42,8 +42,8 @@ public class NewsController {
     
     @RequestMapping("/list")
     public String listNews(Model model) {
-        model.addAttribute("news", newsRestRepository.findAll());
-        return "news/list";
+        //model.addAttribute("news", newsRestRepository.findAll());
+        return "news/index";
     }
 
     /**

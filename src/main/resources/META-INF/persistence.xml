@@ -41,6 +41,8 @@
     <class>mn.ineg.model.MRegulationDocumentGovType</class>
     <class>mn.ineg.model.MScheduler</class>
     <class>mn.ineg.model.MScheduleType</class>
+    <class>mn.ineg.model.MStudies</class>
+    <class>mn.ineg.model.MStudyType</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/ineg?zeroDateTimeBehavior=convertToNull"/>

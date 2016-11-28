@@ -13,7 +13,7 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
  *
  * @author developer
  */
-@RepositoryRestResource(collectionResourceRel = "data", path = "scheduletype")
+//@RepositoryRestResource(collectionResourceRel = "data", path = "scheduletype")
 public interface ScheduleTypeRestRepository extends PagingAndSortingRepository<MScheduleType, Integer>{
     
 }

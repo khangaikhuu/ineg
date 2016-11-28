@@ -7,6 +7,7 @@ package mn.ineg.service;
 
 import mn.ineg.model.MLawInternational;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 /**
  *

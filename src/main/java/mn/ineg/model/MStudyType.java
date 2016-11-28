@@ -5,8 +5,6 @@
  */
 package mn.ineg.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
@@ -19,6 +17,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -28,11 +27,13 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author developer
  */
 @Entity
-@Table(name = "m_division")
+@Table(name = "m_study_type")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "MDivision.findAll", query = "SELECT m FROM MDivision m")})
-public class MDivision implements Serializable {
+    @NamedQuery(name = "MStudyType.findAll", query = "SELECT m FROM MStudyType m"),
+    @NamedQuery(name = "MStudyType.findById", query = "SELECT m FROM MStudyType m WHERE m.id = :id"),
+    @NamedQuery(name = "MStudyType.findByName", query = "SELECT m FROM MStudyType m WHERE m.name = :name")})
+public class MStudyType implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -40,22 +41,24 @@ public class MDivision implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Size(max = 100)
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 500)
     @Column(name = "name")
     private String name;
-    @Column(name = "vacancy")
-    private Integer vacancy;
-    @OneToMany(mappedBy = "divisionId")
-    private List<MStaff> mStaffList;
+    @OneToMany(mappedBy = "typeId")
+    private List<MStudies> mStudiesList;
 
-    @OneToMany(mappedBy = "divisionId")
-    private List<MDivisionContent> contentList;
-
-    public MDivision() {
+    public MStudyType() {
     }
 
-    public MDivision(Integer id) {
+    public MStudyType(Integer id) {
         this.id = id;
+    }
+
+    public MStudyType(Integer id, String name) {
+        this.id = id;
+        this.name = name;
     }
 
     public Integer getId() {
@@ -74,32 +77,13 @@ public class MDivision implements Serializable {
         this.name = name;
     }
 
-    public Integer getVacancy() {
-        return vacancy;
-    }
-
-    public void setVacancy(Integer vacancy) {
-        this.vacancy = vacancy;
-    }
-
     @XmlTransient
-    @JsonIgnore
-    public List<MStaff> getMStaffList() {
-        return mStaffList;
+    public List<MStudies> getMStudiesList() {
+        return mStudiesList;
     }
 
-    public void setMStaffList(List<MStaff> mStaffList) {
-        this.mStaffList = mStaffList;
-    }
-
-    @XmlTransient
-    @JsonProperty("contentList")
-    public List<MDivisionContent> getContentList() {
-        return contentList;
-    }
-
-    public void setContentList(List<MDivisionContent> contentList) {
-        this.contentList = contentList;
+    public void setMStudiesList(List<MStudies> mStudiesList) {
+        this.mStudiesList = mStudiesList;
     }
 
     @Override
@@ -112,10 +96,10 @@ public class MDivision implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof MDivision)) {
+        if (!(object instanceof MStudyType)) {
             return false;
         }
-        MDivision other = (MDivision) object;
+        MStudyType other = (MStudyType) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -124,7 +108,7 @@ public class MDivision implements Serializable {
 
     @Override
     public String toString() {
-        return "mn.ineg.model.MDivision[ id=" + id + " ]";
+        return "mn.ineg.model.MStudyType[ id=" + id + " ]";
     }
-
+    
 }

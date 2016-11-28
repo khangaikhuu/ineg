@@ -13,7 +13,7 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
  *
  * @author developer
  */
-@RepositoryRestResource(collectionResourceRel = "data", path = "flightschedule")
+//@RepositoryRestResource(collectionResourceRel = "data", path = "flightschedule")
 public interface FlightSchedulerRestRepository extends PagingAndSortingRepository<MFlightSchedule, Integer>{
     
 }

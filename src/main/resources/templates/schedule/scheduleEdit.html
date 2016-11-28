@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en" data-layout-decorator="layouts/default-layout">
     <head>
-        <title>Schedule  Add</title>
+        <title>Schedule  Edit</title>
     </head>
     <body>
         <div class="page-content-wrapper" data-layout-fragment="content">
@@ -21,6 +21,7 @@
                             <a href="#">Ээлжийн хуваарь оруулах</a>
                             <i class="fa fa-circle"></i>
                         </li>
+
                     </ul>
                 </div>
                 <div class="row">
@@ -28,21 +29,21 @@
                         <div class="portlet box blue">
                             <div class="portlet-title">
                                 <div class="caption">
-                                    <i class="fa fa-legal"></i> Ээлжийн хуваарь нэмэх</div>
+                                    <i class="fa fa-legal"></i> Ээлжийн хуваарь засах </div>
                                 <div class="tools">
                                     <a href="" class="collapse"> </a>
                                     <a href="" class="reload"> </a>
                                 </div>
                             </div>
                             <div class="portlet-body form">
-                                <form  action="#" th:action="@{/schedule/saveNew}"  id="addForm" name="schedule_type_form" 
+                                <form  action="#" th:action="@{/schedule/saveEdit}"  id="addForm" name="schedule_type_form" 
                                        th:object="${scheduler}" class="form-horizontal"  method="post" role="form" 
                                        enctype=multipart/form-data">
                                     <div class="form-body">                                        
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Нэр</label>
                                             <div class="col-sm-6">
-                                                <!--<input type="hidden" name="schedule_id" th:value="*{id}"/>-->
+                                                <input type="hidden" name="schedule_id" th:value="*{id}"/>
                                                 <input type="text" class="form-control" name="schedule_name" th:value="*{name}" />
                                             </div>
                                         </div>
@@ -61,8 +62,7 @@
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Хуулийн төрөл сонгох </label>
                                             <div class="col-sm-6">
-                                                <select id="law_type_id" name="schedule_type_id" 
-                                                        th:value="${scheduleTypes}">
+                                                <select id="law_type_id" name="schedule_type_id" th:value="${scheduleTypes}">
                                                     <option th:each="scheduleType : ${scheduleTypes}" 
                                                             th:value ="${scheduleType.id}"
                                                             th:text="${scheduleType.name}">

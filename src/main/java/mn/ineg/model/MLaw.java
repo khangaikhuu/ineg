@@ -144,6 +144,7 @@ public class MLaw implements Serializable {
         this.path = path;
     }
 
+    @JsonProperty("lawtypes")
     public MLawType getLawTypeId() {
         return lawTypeId;
     }
