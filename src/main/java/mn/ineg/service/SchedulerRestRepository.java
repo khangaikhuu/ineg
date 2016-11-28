@@ -5,7 +5,7 @@
  */
 package mn.ineg.service;
 
-import mn.ineg.model.MDivisionContent;
+import mn.ineg.model.MScheduler;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
@@ -13,8 +13,6 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
  *
  * @author developer
  */
-@RepositoryRestResource(collectionResourceRel = "data", path = "divisioncontent")
-public interface DivisionContentRepository extends PagingAndSortingRepository<MDivisionContent, Integer> {
-    
+@RepositoryRestResource(collectionResourceRel = "data", path = "schedule")
+public interface SchedulerRestRepository extends PagingAndSortingRepository<MScheduler, Integer>{
 }
-

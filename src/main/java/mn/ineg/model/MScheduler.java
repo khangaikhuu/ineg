@@ -15,13 +15,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -29,21 +26,14 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "m_scheduler")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "MScheduler.findAll", query = "SELECT m FROM MScheduler m"),
-    @NamedQuery(name = "MScheduler.findByInt1", query = "SELECT m FROM MScheduler m WHERE m.int1 = :int1"),
-    @NamedQuery(name = "MScheduler.findByName", query = "SELECT m FROM MScheduler m WHERE m.name = :name"),
-    @NamedQuery(name = "MScheduler.findByDate", query = "SELECT m FROM MScheduler m WHERE m.date = :date"),
-    @NamedQuery(name = "MScheduler.findByFilePath", query = "SELECT m FROM MScheduler m WHERE m.filePath = :filePath")})
 public class MScheduler implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "int")
-    private Integer int1;
+    @Column(name = "id")
+    private Integer id;
     @Size(max = 500)
     @Column(name = "name")
     private String name;
@@ -60,16 +50,16 @@ public class MScheduler implements Serializable {
     public MScheduler() {
     }
 
-    public MScheduler(Integer int1) {
-        this.int1 = int1;
+    public MScheduler(Integer id) {
+        this.id = id;
     }
 
-    public Integer getInt1() {
-        return int1;
+    public Integer getId() {
+        return id;
     }
 
-    public void setInt1(Integer int1) {
-        this.int1 = int1;
+    public void setId(Integer int1) {
+        this.id = int1;
     }
 
     public String getName() {
@@ -107,7 +97,7 @@ public class MScheduler implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (int1 != null ? int1.hashCode() : 0);
+        hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
 
@@ -118,7 +108,7 @@ public class MScheduler implements Serializable {
             return false;
         }
         MScheduler other = (MScheduler) object;
-        if ((this.int1 == null && other.int1 != null) || (this.int1 != null && !this.int1.equals(other.int1))) {
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
@@ -126,7 +116,7 @@ public class MScheduler implements Serializable {
 
     @Override
     public String toString() {
-        return "mn.ineg.model.MScheduler[ int1=" + int1 + " ]";
+        return "mn.ineg.model.MScheduler[ int1=" + id + " ]";
     }
     
 }

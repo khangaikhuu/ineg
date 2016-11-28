@@ -5,7 +5,7 @@
  */
 package mn.ineg.controller;
 
-import mn.ineg.service.DivisionContentRepository;
+import mn.ineg.repository.DivisionContentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

@@ -28,11 +28,7 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "m_schedule_type")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "MScheduleType.findAll", query = "SELECT m FROM MScheduleType m"),
-    @NamedQuery(name = "MScheduleType.findById", query = "SELECT m FROM MScheduleType m WHERE m.id = :id"),
-    @NamedQuery(name = "MScheduleType.findByName", query = "SELECT m FROM MScheduleType m WHERE m.name = :name")})
+
 public class MScheduleType implements Serializable {
 
     private static final long serialVersionUID = 1L;

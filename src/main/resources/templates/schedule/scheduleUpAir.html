@@ -49,6 +49,7 @@
                                             <tr>
                                                 <th>
                                                     <i class="fa fa-user"></i> Хуулийн Нэр </th>
+                                                <th>  <i class="fa fa-file"></i> Date </th>
                                                 <th>  <i class="fa fa-file"></i> Файл </th>
                                                 <th> 
                                                 </th>
@@ -57,22 +58,26 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr th:each="law : ${laws}">
-                                                <td th:text="${law.name}">
+                                            <tr th:each="schedule : ${scheduler}">
+                                                <td th:text="${schedule.name}">
+                                                    <div class="success"></div>
+                                                    <a href="javascript:;">  </a>
+                                                </td>
+                                                <td th:text="${schedule.date}">
                                                     <div class="success"></div>
                                                     <a href="javascript:;">  </a>
                                                 </td>
                                                 <td >
-                                                    <a th:href ="${'/download' + law.path}">
+                                                    <a th:href ="${'/download' + schedule.filePath}">
                                                         <i class="fa fa-download"></i>
                                                     </a>
                                                 </td>
                                                 <td>
-                                                    <a href="#" data-th-href="${'/lawinternational/edit/' + law.id}" class="btn btn-outline btn-circle btn-sm purple">
+                                                    <a href="#" data-th-href="${'/schedule/edit/' + schedule.id}" class="btn btn-outline btn-circle btn-sm purple">
                                                         <i class="fa fa-edit"></i> Засах </a>
                                                 </td>
                                                 <td>
-                                                    <a th:href="${'/lawinternational/delete/' + law.id}" class="btn btn-outline btn-circle btn-sm purple">
+                                                    <a th:href="${'/schedule/delete/' + schedule.id}" class="btn btn-outline btn-circle btn-sm purple">
                                                         <i class="fa fa-remove"></i> Устгах </a>
                                                 </td>
                                             </tr>
