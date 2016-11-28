@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" data-layout-decorator="layouts/default-layout">
     <head>
-        <title>International Law</title>
+        <title>Scheduler Type</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     </head>
     <body>
@@ -15,15 +15,8 @@
                 <div class="page-bar">
                     <ul class="page-breadcrumb">
                         <li>
-                            <a href="/">Хууль, Эрх Зүй</a>
+                            <a href="/">Ээлжийн хуваарийн төрөл</a>
                             <i class="fa fa-circle"></i>
-                        </li>
-                        <li>
-                            <a href="#">Гадаад</a>
-                            <i class="fa fa-circle"></i>
-                        </li>
-                        <li>
-                            <span>Хуулийн жагсаалт</span>
                         </li>
                     </ul>
                 </div>
@@ -34,9 +27,9 @@
                         <div class="portlet box blue">
                             <div class="portlet-title">
                                 <div class="caption">
-                                    <i class="fa fa-comments"></i>Олон Улсын Хууль Эрх Зүй </div>
+                                    <i class="fa fa-comments"></i>Ээлжийн хуваарийн төрөл </div>
                                 <div class="actions">
-                                    <a class="btn grey-salsa btn-sm active" href="/lawinternational/new" > Хууль нэмэх
+                                    <a class="btn grey-salsa btn-sm active" href="/scheduletype/new" > Хуваарийн төрөл нэмэх
                                         <i class="fa fa-plus"></i>
                                     </a>
                                 </div>
@@ -48,8 +41,8 @@
                                         <thead>
                                             <tr>
                                                 <th>
-                                                    <i class="fa fa-user"></i> Хуулийн Нэр </th>
-                                                <th>  <i class="fa fa-file"></i> Файл </th>
+                                                    <i class="fa fa-user"></i> Ээлжийн хуваарийн төрлийн нэр </th>
+                                                <th>  
                                                 <th> 
                                                 </th>
                                                 <th> 
@@ -57,22 +50,17 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr th:each="law : ${laws}">
-                                                <td th:text="${law.name}">
+                                            <tr th:each="scheduleType : ${scheduleTypes}">
+                                                <td th:text="${scheduleType.name}">
                                                     <div class="success"></div>
                                                     <a href="javascript:;">  </a>
                                                 </td>
-                                                <td >
-                                                    <a th:href ="${'/download' + law.path}">
-                                                        <i class="fa fa-download"></i>
-                                                    </a>
-                                                </td>
                                                 <td>
-                                                    <a href="#" data-th-href="${'/lawinternational/edit/' + law.id}" class="btn btn-outline btn-circle btn-sm purple">
+                                                    <a href="#" data-th-href="${'/scheduletype/edit/' + scheduleType.id}" class="btn btn-outline btn-circle btn-sm purple">
                                                         <i class="fa fa-edit"></i> Засах </a>
                                                 </td>
                                                 <td>
-                                                    <a th:href="${'/lawinternational/delete/' + law.id}" class="btn btn-outline btn-circle btn-sm purple">
+                                                    <a th:href="${'/scheduletype/delete/' + scheduleType.id}" class="btn btn-outline btn-circle btn-sm purple">
                                                         <i class="fa fa-remove"></i> Устгах </a>
                                                 </td>
                                             </tr>

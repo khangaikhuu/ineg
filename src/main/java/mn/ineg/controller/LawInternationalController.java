@@ -5,6 +5,10 @@
  */
 package mn.ineg.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.UUID;
+import mn.ineg.main.Common;
 import mn.ineg.model.MLawInternational;
 import mn.ineg.model.MLawTypeInternational;
 import mn.ineg.service.LawInternationalCrudRepository;
@@ -19,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -80,19 +85,27 @@ public class LawInternationalController {
     @RequestMapping(value = "/saveNew", method = RequestMethod.POST)
     public ModelAndView saveInternationalLaw(
             @RequestParam("law_name") String law_name,
-            @RequestParam("law_path") String law_path,
             @RequestParam("law_type_id") String law_type_id,
-            @RequestParam("action") String action) {
+            @RequestParam("file") MultipartFile file,
+            @RequestParam("action") String action) throws IOException {
         ModelAndView view = new ModelAndView("redirect:/lawinternational/list");
+        System.out.println("File : " + file.getName());
+        String uploadDir = "/externallaw";
+        String filePath = Common.ROOT_FOLDER + uploadDir;
+        String uploadFileName = "outerlaw" + UUID.randomUUID().toString() + ".pdf";
+        String law_file_path = uploadDir + "/" + uploadFileName;
+        File destination = new File(filePath, uploadFileName);
+        if (!file.isEmpty()) {
+            file.transferTo(destination);
+        }
         if (action.equals("save")) {
             MLawInternational law = new MLawInternational();
             law.setName(law_name);
-            law.setPath(law_path);
+            law.setPath(law_file_path);
             law.setLawTypeId(lawITRRepository.findOne(Integer.parseInt(law_type_id)));
             System.out.println("Law Type : " + lawITRRepository.findOne(Integer.parseInt(law_type_id)));
             lawIRCRepository.save(law);
-            
-            view.addObject("law", law);
+//            view.addObject("law", law);
             System.out.println("International Law Added");
         }
         if (action.equals("cancel")) {
@@ -102,7 +115,7 @@ public class LawInternationalController {
     }
     
     /**
-     * Save edited internation law
+     * Save edited international law
      * @param id
      * @return
      */
@@ -110,23 +123,29 @@ public class LawInternationalController {
     public ModelAndView saveEditInternationalLaw(
             @RequestParam("law_id") String law_id,
             @RequestParam("law_name") String law_name,
-            @RequestParam("law_path") String law_path,
+            @RequestParam("file") MultipartFile file,
             @RequestParam("law_type_id") String law_type_id,
-            @RequestParam("action") String action) {
+            @RequestParam("action") String action) throws IOException {
         ModelAndView view = new ModelAndView("redirect:/lawinternational/list");
+        String uploadDir = "/externallaw";
+        String filePath = Common.ROOT_FOLDER + uploadDir;
+        String uploadFileName = "outerlaw" + UUID.randomUUID().toString() + ".pdf";
+        String law_file_path = uploadDir + "/" + uploadFileName;
+        File destination = new File(filePath, uploadFileName);
+        if (!file.isEmpty()) {
+            file.transferTo(destination);
+        }
         if (action.equals("save")) {
             System.out.println("Law Id " + law_id);
             System.out.println("Law Name " + law_name);
-            System.out.println("Law Path " + law_path);
             System.out.println("Law Type Id " + law_type_id);
             System.out.println("Law action " + action);
             MLawInternational law = lawIRRepository.findOne(Integer.parseInt(law_id));
             law.setName(law_name);
-            law.setPath(law_path);
+            law.setPath(law_file_path);
             law.setLawTypeId(lawITRRepository.findOne(Integer.parseInt(law_type_id)));
             System.out.println("Law Type : " + lawITRRepository.findOne(Integer.parseInt(law_type_id)));
             lawIRCRepository.save(law);
-            view.addObject("law", law);
             System.out.println("International Law Edited");
         }
         if (action.equals("cancel")) {

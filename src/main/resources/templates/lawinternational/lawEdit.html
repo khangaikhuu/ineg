@@ -35,7 +35,9 @@
                                 </div>
                             </div>
                             <div class="portlet-body form">
-                                <form  action="#" th:action="@{/lawinternational/saveEdit}"  id="editForm" name="law_international_form" th:object="${law}" class="form-horizontal"  method="post" role="form" >
+                                <form  action="#" th:action="@{/lawinternational/saveEdit}"  id="editForm" 
+                                       name="law_international_form" th:object="${law}" class="form-horizontal"  
+                                       method="post" role="form" enctype=multipart/form-data">
                                     <div class="form-body">        
                                         <input type="hidden" name="law_id" th:value="*{id}"/>
                                         <div class="form-group">
@@ -47,7 +49,8 @@
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Файл</label>
                                             <div class="col-sm-6">
-                                                <input type="text" class="form-control" name="law_path" th:value="*{path}" />
+                                                <!--                                                <input type="text" class="form-control" name="law_path" th:value="*{path}" />-->
+                                                <input type="file" class="form-control" name="file" id="file" />
                                             </div>
                                         </div>
                                         <div class="form-group">

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" data-layout-decorator="layouts/default-layout">
+    <head>
+        <title>Schedule Type Add</title>
+    </head>
+    <body>
+        <div class="page-content-wrapper" data-layout-fragment="content">
+
+            <!-- BEGIN CONTENT BODY -->
+            <div class="page-content">
+                <!-- BEGIN PAGE HEADER-->
+
+                <!-- BEGIN PAGE BAR -->
+                <div class="page-bar">
+                    <ul class="page-breadcrumb">
+                        <li>
+                            <a href="/scheduletype/list">Ээлжийн хуваарь </a>
+                            <i class="fa fa-circle"></i>
+                        </li>
+                        <li>
+                            <a href="#">Ээлжийн хуваарийн төрөл</a>
+                            <i class="fa fa-circle"></i>
+                        </li>
+                       
+                    </ul>
+                </div>
+                <div class="row">
+                    <div class="col-md-10">
+                        <div class="portlet box blue">
+                            <div class="portlet-title">
+                                <div class="caption">
+                                    <i class="fa fa-legal"></i> Ээлжийн хуваарийн төрөл </div>
+                                <div class="tools">
+                                    <a href="" class="collapse"> </a>
+                                    <a href="" class="reload"> </a>
+                                </div>
+                            </div>
+                            <div class="portlet-body form">
+                                <form  action="#" th:action="@{/scheduletype/save}"  id="addForm" name="schedule_type_form" 
+                                       th:object="${scheduleType}" class="form-horizontal"  method="post" role="form" >
+                                    <div class="form-body">                                        
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">Ээлжийн хуваарийн нэр</label>
+                                            <div class="col-sm-6">
+                                                <input type="hidden" name="schedule_id" th:value="*{id}"/>
+                                                <input type="text" class="form-control" name="schedule_name" th:value="*{name}" />
+                                            </div>
+                                        </div>
+                                        <div class="form-actions">
+                                            <button type="submit" name="action" value="save"  class="btn btn-green">Хадгалах</button>
+                                            <button type="submit" name="action" value="cancel" class="btn btn-default">Цуцлах</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END CONTENT BODY -->
+        </div>
+    </body>
+</html>
+

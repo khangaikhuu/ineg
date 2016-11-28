@@ -43,7 +43,8 @@
                             </div>
                             <div class="portlet-body form">
                                 <!--<form  action="" id="bForm" class="form-horizontal" data-th-object="${law}" data-th-action="@{/law/add}" method="post">-->
-                                <form  action="#" th:action="@{/law/saveNew}" th:object="${law}" id="addForm" name="addForm" class="form-horizontal"  
+                                <form  action="#" th:action="@{/law/saveNew}" th:object="${law}" id="addForm" 
+                                       name="addForm" class="form-horizontal"  
                                        method="post" role="form" enctype=multipart/form-data">
                                     <div class="form-body">
                                         <!--<input type="hidden" name="law_id" th:value="${law.lawId}"/>-->
@@ -52,13 +53,15 @@
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label"> Нэр</label>
                                             <div class="col-sm-6">
-                                                <input type="text" class="form-control" name="law_name" th:value="*{lawName}" />
+                                                <input type="text" class="form-control" name="law_name" 
+                                                       th:value="*{lawName}" />
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Батлагдсан</label>
                                             <div class="col-sm-6">
-                                                <input type="text" class="form-control datepicker" name="law_approved_year" th:value="*{approvedYear}"/>
+                                                <input type="text" class="form-control datepicker" 
+                                                       name="law_approved_year" th:value="*{approvedYear}"/>
                                             </div>
                                         </div>
                                         <div class="form-group">
